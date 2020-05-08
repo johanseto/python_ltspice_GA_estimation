@@ -68,3 +68,13 @@ plt.plot(time, i_in*1000)
 #plt.ylim((-10, 10))
 plt.grid()
 plt.show()
+
+dt=[]
+for i in range (1,len(time)):
+    dt.append(time[i]-time[i-1] )
+
+plt.figure()
+plt.plot(dt)
+
+
+

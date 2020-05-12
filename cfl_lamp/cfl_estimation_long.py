@@ -7,12 +7,22 @@ Created on Fri Feb  7 15:10:25 2020
 import os
 import ltspice
 import matplotlib.pyplot as plt
+import pandas 
+import numpy as np
 
 from spice_functions import newNetCall
 
 ##Setup
 netlist= r'C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.net'
+sim_name='cfl_equiv'
+sim_raw='/'+sim_name+'.raw'
 
+##Principal class
+class Modelo:
+    def __init__(self,time,voltage,current):
+        self.v=voltage
+        self.i=current
+        self.t=time
 
 #%% Python netlist modifications
 
@@ -50,7 +60,7 @@ newNetCall(netlist,code)
 #%%Get info
 
 #l = ltspice.Ltspice('C:/Users/user/Desktop/python_spice/root_con/practice_optpy.raw' ) 
-l=ltspice.Ltspice(os.path.dirname(__file__)+'/cfl_equiv.raw')
+l=ltspice.Ltspice(os.path.dirname(__file__)+sim_raw)
 # Make sure that the .raw file is located in the correct path
 l.parse() 
 
@@ -77,4 +87,11 @@ plt.figure()
 plt.plot(dt)
 
 
+#%% Data adquire from csv/xls
+
+excel_data_df = pandas.read_excel('CFL.xlsx')
+df=np.array(excel_data_df[6:])
+time=df[:,0]
+current=df[:,1]
+measure= Modelo(time,[4,56,13,15],current)
 

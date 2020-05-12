@@ -30,7 +30,7 @@ def newNetCall(netlist,code):
   #%%Get info    
 #def getData(dir,variables):
 #
-#    class Señal:
+#    class modelo:
 #        def _init_(self,time,voltages,currents):
 #            self.v=voltages
 #            self.i=currents
@@ -61,7 +61,7 @@ def newNetCall(netlist,code):
 #    
 #    
 #    
-#    señal=Señal(time,V,I) 
+#    señal=modelo(time,V,I) 
 #    
 #  
 #    return señal

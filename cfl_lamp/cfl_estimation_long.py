@@ -44,10 +44,11 @@ code=('* C:\\Users\\user\\Desktop\\python_spice\\cfl_lamp\\cfl_equiv.asc \n'
 'D4 0 N004 D \n'
 'C1 N001 0 '+ c_1 + ' \n'
 'R2 N002 N003 '+ r_2 + ' \n'
-'V1 N002 N004 SINE(0 177 60) \n'
+'V1 N002 N004 SINE(0 177 60 0 0 90) \n'
 '.model D D \n'
 '.lib C:\\Users\\user\\Documents\\LTspiceXVII\\lib\\cmp\\standard.dio \n'
-'.tran 200e-3 \n'
+'.options maxstep=1.25-5 \n'
+'.tran 0 512e-4 0 0.417e-6 \n'
 '.backanno \n'
 '.end \n')
 
@@ -69,11 +70,12 @@ time = l.getTime()
 v_na = l.getData('V(n002)')
 v_nb =l.getData('V(n004)')
 i_in=l.getData('I(R2)')
+simulation=Modelo(time, v_na-v_nb, i_in)
 #%% Plotting signals
 
 #plt.plot(time, v_1)
-plt.plot(time, v_na-v_nb) 
-plt.plot(time, i_in*1000)
+plt.plot(simulation.t, simulation.v) 
+plt.plot(time, simulation.i*1000)
 #plt.xlim((0, 1e-3))
 #plt.ylim((-10, 10))
 plt.grid()
@@ -81,17 +83,60 @@ plt.show()
 
 dt=[]
 for i in range (1,len(time)):
-    dt.append(time[i]-time[i-1] )
+    dt.append(np.round(time[i]-time[i-1],decimals=8) )
 
 plt.figure()
 plt.plot(dt)
-
+plt.axis([0 ,495,1.24e-7,100e-5])
 
 #%% Data adquire from csv/xls
 
 excel_data_df = pandas.read_excel('CFL.xlsx')
 df=np.array(excel_data_df[6:])
-time=df[:,0]
-current=df[:,1]
+time=df[4095:,0]
+time=time.astype(float)
+current=df[4095:,1]
+current=current.astype(float)
 measure= Modelo(time,[4,56,13,15],current)
 
+
+#%% unify the models 
+
+if len(simulation.t)>len(measure.t):
+    newsim_time=measure.t
+    newsim_voltage=np.interp(np.ravel(measure.t),
+                             np.ravel(simulation.t),np.ravel(simulation.v))
+    newsim_current=np.interp(np.ravel(measure.t),
+                             np.ravel(simulation.t),np.ravel(simulation.i))
+
+
+
+simulation_adjust=Modelo(newsim_time, newsim_voltage,newsim_current)
+#%% plotting
+
+plt.figure()
+plt.subplot(211)
+plt.plot(simulation.t, simulation.i) 
+plt.subplot(212)
+plt.plot(measure.t, measure.i)
+plt.figure()
+plt.plot(measure.t, measure.i)
+plt.plot(measure.t, simulation_adjust.i)
+
+#%% new readgin files
+voltage_data_df = pandas.read_csv('voltage.csv',skiprows=4)
+current_data_df = pandas.read_csv('current.csv',skiprows=4)
+time=time=np.array(voltage_data_df.iloc[4095:,0])
+voltage=np.array(voltage_data_df.iloc[4095:,1])
+current=np.array(current_data_df.iloc[4095:,1])
+
+
+measure120= Modelo(time,voltage,current)
+
+plt.figure()
+plt.subplot(211)
+plt.plot(simulation.t, simulation.v) 
+plt.plot(simulation.t, simulation.i*1000)
+plt.subplot(212)
+plt.plot(measure120.t, measure120.v)
+plt.plot(measure120.t, -100*measure120.i)

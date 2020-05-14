@@ -123,7 +123,7 @@ plt.figure()
 plt.plot(measure.t, measure.i)
 plt.plot(measure.t, simulation_adjust.i)
 
-#%% new readgin files
+#%% new reading files
 voltage_data_df = pandas.read_csv('voltage.csv',skiprows=4)
 current_data_df = pandas.read_csv('current.csv',skiprows=4)
 time=time=np.array(voltage_data_df.iloc[4095:,0])

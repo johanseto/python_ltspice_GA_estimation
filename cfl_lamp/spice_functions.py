@@ -22,7 +22,7 @@ def newNetCall(netlist,code):
     f_id.close()
     #Simulation
     os.system('ltspice_call.bat')
-    time.sleep(7)
+    time.sleep(5)
     os.system('ltspice_end.bat')   
     
 

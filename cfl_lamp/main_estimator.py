@@ -4,48 +4,29 @@ Created on Thu May 14 15:51:30 2020
 
 @author: user
 """
-
-import os
-import ltspice
 import matplotlib.pyplot as plt
-import pandas 
 import numpy as np
 
-from spice_functions import newNetCall
+from estimator_functions import Model,LtspiceCalling
+
 ##Setup
 netlist= r'C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.net'
 sim_name='cfl_equiv'
 sim_raw='/'+sim_name+'.raw'
 
-##Principal class
-class Modelo:
-    def __init__(self,time,voltage,current):
-        self.v=voltage
-        self.i=current
-        self.t=time
-        
-    def read_csv_signal(voltage_file,current_file):
-        voltage_data_df = pandas.read_csv(voltage_file,skiprows=4)
-        current_data_df = pandas.read_csv(current_file,skiprows=4)
-        mid=np.where(voltage_data_df.iloc[:,0]==0)
-        mid=mid[0][0]
-        time=time=np.array(voltage_data_df.iloc[mid:,0])
-        voltage=np.array(voltage_data_df.iloc[mid:,1])
-        current=np.array(current_data_df.iloc[mid:,1])
-        measure= Modelo(time,voltage,-current)# -currentdepends on the sense of current coil
-        return measure
 
 #%% new reading files
 voltage_file='voltage.csv'
 current_file='current.csv'
-measure=Modelo.read_csv_signal(voltage_file, current_file)
+measure=Model.read_csv_signal(voltage_file, current_file)#Measure_model
 dt=measure.t[1]-measure.t[0]
 
-# Find the delay of the singal in order to simulte it.
+# Find the delay of the signal in order to simulte it.
 j=1
 while (  not((measure.v[j]*measure.v[j-1]<0 and measure.v[j]>0)
            or(measure.v[j-1]==0 and measure.v[j]>0))       ) :
     j+=1
+    
     
 delay=measure.t[j]
 phi_rad=delay*2*np.pi*60  #wt
@@ -87,36 +68,24 @@ code=('* C:\\Users\\user\\Desktop\\python_spice\\cfl_lamp\\cfl_equiv.asc \n'
 '.backanno \n'
 '.end \n')
 
-#%% Create new netlist
+#%% Create and run new netlist
 
-newNetCall(netlist,code)
+LtspiceCalling(netlist,code)
 #%%Get info
-
-#l = ltspice.Ltspice('C:/Users/user/Desktop/python_spice/root_con/practice_optpy.raw' ) 
-l=ltspice.Ltspice(os.path.dirname(__file__)+sim_raw)
-# Make sure that the .raw file is located in the correct path
-l.parse() 
-
-time = l.getTime()
-#v_1 = l.getData('V(V1)')
-v_na = l.getData('V(n002)')
-v_nb =l.getData('V(n004)')
-i_in=l.getData('I(R2)')
-simulation=Modelo(time, v_na-v_nb, i_in)
-
+variables=['V(n002)','V(n004)','I(R2)']
+simulation=LtspiceCalling.getData(sim_raw, variables)# simulation_Model
 
 #%% unify the models 
-
-
-newsim_time=measure.t
-newsim_voltage=np.interp(np.ravel(measure.t),
-                         np.ravel(simulation.t),np.ravel(simulation.v))
-newsim_current=np.interp(np.ravel(measure.t),
-                         np.ravel(simulation.t),np.ravel(simulation.i))
+simulation_adjust=Model.unify_sim_model(measure,simulation)
 
 
 
-simulation_adjust=Modelo(newsim_time, newsim_voltage,newsim_current)
+
+
+
+
+
+
 #%% plotting
 
 plt.figure()

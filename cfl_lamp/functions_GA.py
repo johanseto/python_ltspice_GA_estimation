@@ -5,7 +5,7 @@ Created on Mon Feb 10 19:59:12 2020
 @author: JohanV
 """
 import numpy as np
-import math
+from fitness_functions import fitnessSnubber,fitnessCfl
 
 def evalPopu(popu,bit_n,rango,obj_fcn):
     global count
@@ -112,8 +112,4 @@ def nextPopu(popu,popu_eval,xover_rate,mut_rate):
     return new_popu
     
     
-    
-def fitnessSnubber(ind_fl):
-    fitness=math.sqrt(ind_fl[0,0]/ind_fl[0,1])    
-    return fitness
     

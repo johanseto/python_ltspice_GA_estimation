@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 10 21:14:51 2020
+Created on Thu May 14 15:51:30 2020
 
-@author: JohanV
+@author: user
 """
+import matplotlib.pyplot as plt
 import numpy as np
+
 from functions_GA import evalPopu,upperData,nextPopu
-global a
-C_oes=395e-12
-popu_size=200
+from fitness_functions import fitnessCfl
+
+
+
+popu_size=5
 xover_rate=1.0
 mut_rate=0.09
 bit_n=16
@@ -21,14 +25,16 @@ global C_s1
 global L_s1
 
 
-id_max=0.9
-L_max=1000e-6
-C_max=1000e-9
+r1=5.978e2
+r2=60
+c1=3.62e-6
 
-fitness_fcn= 'fitnessSnubber'
-var_n=2
-rango=np.array([[1e-9,L_max],
-                [5*C_oes,C_max]])
+fitness_fcn= 'fitnessCfl'
+var_n=3
+
+rango=np.array([[0,10e3],
+                [0,1e3],
+                [0,100e-6]])
 
 popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 popu=popu*1
@@ -54,3 +60,18 @@ while limit<=20:
     i+=1
     popu=nextPopu(popu,popu_eval,xover_rate,mut_rate)
     
+    
+    
+#%% plotting
+fit_solution=np.array([upper[-1,:]])
+dist,measure,simulation_adjust=fitnessCfl(fit_solution , models="true")
+# #%% plotting
+
+# plt.figure()
+# plt.subplot(211)
+# plt.plot(simulation_adjust.t, simulation_adjust.i) 
+# plt.plot(measure.t, measure.i)
+
+# plt.subplot(212)
+# plt.plot(simulation_adjust.t, simulation_adjust.v) 
+# plt.plot(measure.t, measure.v)

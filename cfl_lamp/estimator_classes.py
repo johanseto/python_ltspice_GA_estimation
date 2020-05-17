@@ -41,13 +41,13 @@ class Model:
 # Calling ltspice class
 class LtspiceCalling:
   # Create new netlist
-    def __init__(self,netlist,code):
+    def __init__(self,netlist,code,seconds):
         f_id=open(netlist,'w')
         f_id.write(code)
         f_id.close()
         #Simulation
         os.system('ltspice_call.bat')
-        time.sleep(5)
+        time.sleep(seconds)
         os.system('ltspice_end.bat')   
     
     def getData(sim_raw,variables):

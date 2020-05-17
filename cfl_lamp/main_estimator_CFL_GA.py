@@ -12,17 +12,13 @@ from fitness_functions import fitnessCfl
 
 
 
-popu_size=5
-xover_rate=1.0
-mut_rate=0.09
+popu_size=50
+xover_rate=0.9
+mut_rate=0.3
 bit_n=16
 limit=0
 epsilon=1e-0
 
-global E_i
-global id_max
-global C_s1
-global L_s1
 
 
 r1=5.978e2

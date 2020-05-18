@@ -1,31 +1,21 @@
 Circuit: * C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.asc
 
 Direct Newton iteration for .op point succeeded.
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.0458844 to 0.0458844
-Heightened Def Con from 0.045885 to 0.045885
-Heightened Def Con from 0.045885 to 0.045885
-Heightened Def Con from 0.045885 to 0.045885
-Heightened Def Con from 0.045885 to 0.045885
 
-Date: Fri May 15 20:40:42 2020
-Total elapsed time: 0.284 seconds.
+Date: Mon May 18 17:41:58 2020
+Total elapsed time: 0.218 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 10061
-traniter = 10051
-tranpoints = 4355
-accept = 4231
-rejected = 134
+totiter = 574
+traniter = 562
+tranpoints = 160
+accept = 118
+rejected = 42
 matrix size = 5
-fillins = 4
+fillins = 5
 solver = Normal
-Matrix Compiler1: 378 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler1: 398 bytes object code size  0.1/0.1/[0.0]
 Matrix Compiler2: off  [0.1]/0.1/0.1
 

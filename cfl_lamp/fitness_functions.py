@@ -81,13 +81,13 @@ def fitnessCfl(ind_fl,**options):
     '.model D D \n'
     '.lib C:\\Users\\user\\Documents\\LTspiceXVII\\lib\\cmp\\standard.dio \n'
     '.options maxstep=1.25-5 \n'
-    '.tran 0 '+t_sim+' 0 '+ dt_sim + ' \n'
+    '.tran 0 '+t_sim+ ' \n'   # \' 0 '+ dt_sim +' \n'
     '.backanno \n'
     '.end \n')
     
     #%% Create and run new netlist
     
-    LtspiceCalling(netlist,code,8)
+    LtspiceCalling(netlist,code,1)
     #%%Get info
     variables=['V(n002)','V(n004)','I(R2)']
     simulation=LtspiceCalling.getData(sim_raw, variables)# simulation_Model

@@ -6,7 +6,7 @@ Created on Fri May 15 18:02:10 2020
 
 """
 import numpy as np
-
+import pickle
 from estimator_classes import Model,LtspiceCalling
 import matplotlib.pyplot as plt
 
@@ -23,33 +23,17 @@ def fitnessCfl(ind_fl,**options):
     sim_name='cfl_equiv'
     sim_raw='/'+sim_name+'.raw'
     
-    
-    # new reading files
-    voltage_file='voltage.csv'
-    current_file='current.csv'
-    measure=Model.read_csv_signal(voltage_file, current_file)#Measure_model
-    dt=measure.t[1]-measure.t[0]
-    
-    # Find the delay of the signal in order to simulte it.
-    j=1
-    while (  not((measure.v[j]*measure.v[j-1]<0 and measure.v[j]>0)
-               or(measure.v[j-1]==0 and measure.v[j]>0))       ) :
-        j+=1
+    #adquire caracterstics from measure signal
+    with open("measure.pickle", "rb") as f:
+        measure = pickle.load(f)
+    with open("simulation_vars.pickle", "rb") as f:
+        simulation_vars = pickle.load(f)
         
-        
-    delay=measure.t[j]
-    phi_rad=delay*2*np.pi*60  #wt
-    phi_deg=phi_rad*180/np.pi  
-    phi_deg=-phi_deg  #negative in order to delay the simu signal
-    
-    signal_peak=max(measure.v)
-    time_max=measure.t[-1]
-    
-    #Simulation variables 
-    dt_sim=str(dt)
-    phi=str(phi_deg)
-    amp=str(signal_peak)
-    t_sim=str(time_max)
+    dt_sim=simulation_vars[0]
+    phi=simulation_vars[1]
+    amp=simulation_vars[2]
+    t_sim=simulation_vars[3]
+
     #%% Python netlist modifications
     
     # r1=5.978e2

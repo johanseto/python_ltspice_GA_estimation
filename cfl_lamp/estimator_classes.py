@@ -37,6 +37,34 @@ class Model:
                          np.ravel(simulation.t),np.ravel(simulation.i))
         simulation_adjust=Model(newsim_time, newsim_voltage,newsim_current)
         return simulation_adjust
+    
+    def signals_caracteristics(voltage_file,current_file):
+        measure=Model.read_csv_signal(voltage_file, current_file)#Measure_model
+        dt=measure.t[1]-measure.t[0]
+        
+        # Find the delay of the signal in order to simulte it.
+        j=1
+        while (  not((measure.v[j]*measure.v[j-1]<0 and measure.v[j]>0)
+                   or(measure.v[j-1]==0 and measure.v[j]>0))       ) :
+            j+=1
+            
+            
+        delay=measure.t[j]
+        phi_rad=delay*2*np.pi*60  #wt
+        phi_deg=phi_rad*180/np.pi  
+        phi_deg=-phi_deg  #negative in order to delay the simu signal
+        
+        signal_peak=max(measure.v)
+        time_max=measure.t[-1]
+        
+        #Simulation variables 
+        dt_sim=str(dt)
+        phi=str(phi_deg)
+        amp=str(signal_peak)
+        t_sim=str(time_max)
+        
+        simulation_vars=[dt_sim,phi,amp,t_sim]
+        return measure,simulation_vars
 
 # Calling ltspice class
 class LtspiceCalling:

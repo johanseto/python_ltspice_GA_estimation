@@ -82,6 +82,7 @@ def fitnessCfl(ind_fl,**options):
     
     #Diference signals
     dist = np.linalg.norm(measure.i-simulation_adjust.i)
+    dist=1/dist
     #     #%% plotting
 
     # plt.figure()

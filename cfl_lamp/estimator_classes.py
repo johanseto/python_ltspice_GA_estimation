@@ -76,20 +76,36 @@ class LtspiceCalling:
         #Simulation
         os.system('ltspice_call.bat')
         time.sleep(seconds)
-        os.system('ltspice_end.bat')   
+           
     
     def getData(sim_raw,variables):
         l=ltspice.Ltspice(os.path.dirname(__file__)+sim_raw)
 # Make sure that the .raw file is located in the correct path
 #l = ltspice.Ltspice('C:/Users/user/Desktop/python_spice/root_con/practice_optpy.raw' ) 
-        l.parse() 
+        tryParse(l) 
         time = l.getTime()
         v_na = l.getData(variables[0])
         v_nb =l.getData(variables[1])
         i_in=l.getData(variables[2])
         simulation=Model(time, v_na-v_nb, i_in)
+        os.system('ltspice_end.bat')
         return simulation
+    
 
+            
+            
+            
+
+    
+    
+def tryParse(l): #Recursion function to avoid problem of parsing in the working directory
+    try:
+        l.parse()
+    except:
+        tryParse(l)
+            
+            
+        
 
 
 

@@ -71,7 +71,7 @@ def fitnessCfl(ind_fl,**options):
     
     #%% Create and run new netlist
     
-    LtspiceCalling(netlist,code,1)
+    LtspiceCalling(netlist,code,1)#0.5 seconds per simulation
     #%%Get info
     variables=['V(n002)','V(n004)','I(R2)']
     simulation=LtspiceCalling.getData(sim_raw, variables)# simulation_Model

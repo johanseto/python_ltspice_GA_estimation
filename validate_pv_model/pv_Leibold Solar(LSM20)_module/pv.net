@@ -1,0 +1,11 @@
+* C:\Users\user\Desktop\python_spice\validate_pv_model\pv.asc
+R1 N001 0 1973.35
+R2 N001 N002 6.39445
+D1 N001 0 DPV
+V1 N002 0 0
+I1 0 N001 0.15449
+.model DPV D(Is=2.50879e-9 N=25.3762 Tnom=24)
+.lib C:\Users\user\Documents\LTspiceXVII\lib\cmp\standard.dio
+.dc V1 0 11.3 1m
+.backanno
+.end

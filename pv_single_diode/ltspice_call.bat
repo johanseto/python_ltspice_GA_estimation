@@ -1,1 +1,1 @@
-start "C:\Program Files\LTC\LTspiceXVII\ltspicej.exe -b" C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.net 
+start "C:\Program Files\LTC\LTspiceXVII\ltspicej.exe -b" C:\Users\user\Desktop\python_spice\pv_single_diode\pv.net 

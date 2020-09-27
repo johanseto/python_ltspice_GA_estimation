@@ -1,10 +1,10 @@
 * C:\Users\user\Desktop\python_spice\pv_single_diode\pv.asc 
-R1 N001 0 52.4768 
-R2 N001 N002 0.0367251 
+R1 N001 0 270.3321353265146 
+R2 N001 N002 49.447355983119955 
 D1 N001 0 DPV 
 V1 N002 0 0 
-I1 0 N001 0.760849 
-.model DPV D(Is=2.9815e-07 N=1.43 Tnom=33.0) 
+I1 0 N001 2.828834557184751 
+.model DPV D(Is=7.709341155310778e-05 N=2.7229573468755213 Tnom=86.62565863195289) 
 .lib C:\Users\user\Documents\LTspiceXVII\lib\cmp\standard.dio 
 .dc V1 -0.2057 0.59 0.00766
 .backanno 

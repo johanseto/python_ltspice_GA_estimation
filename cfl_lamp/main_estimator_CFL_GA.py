@@ -17,10 +17,11 @@ from fitness_functions import fitnessCfl
 
 
 # new reading files
-voltage_current_file='voltage.csv'
+voltage_file='voltage.csv'
+current_file='current.csv'
 
-
-measure,simulation_vars=ModelPv.signals_caracteristics(voltage_current_file)
+measure,simulation_vars=Model.signals_caracteristics(voltage_file,
+                                                     current_file)
 
 #save classes to functions
 with open("measure.pickle", "wb") as f:

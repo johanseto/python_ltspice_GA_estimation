@@ -24,13 +24,13 @@ dv_sim=str(simulation_vars[0])
 v_init=str(simulation_vars[1])
 v_last=str(simulation_vars[2])
 
-ind_fl=np.array([[52.4768,0.0367251,0.760849,1.43,33,0.29815e-6]])
+ind_fl=np.array([[52.4768,0.0367251,0.29815e-6,1.43,0.760849,33]])
 r1=ind_fl[0,0]#Rshunt
 r2=ind_fl[0,1]#Rserie
-ilambda=ind_fl[0,2] #ilambda
+isat=ind_fl[0,2] #saturation current
 n=ind_fl[0,3]#emission coeef
-temp=ind_fl[0,4]#temperature
-isat=ind_fl[0,5]#saturation current
+ilambda=ind_fl[0,4]#lamda curent from irrad
+temp=ind_fl[0,5]#temperature
 
 
 
@@ -105,7 +105,7 @@ with open("measure.pickle", "wb") as f:
 with open("simulation_vars.pickle", "wb") as f:
     pickle.dump(simulation_vars, f)
     
-ind_fl=np.array([[52.4768,0.0367251,0.760849,1.43,33,0.29815e-6]])
+ind_fl=np.array([[52.4768,0.0367251,0.29815e-6,1.43,0.760849,33]])
 
 dist2,measure,simulation_adjust=fitnessPv(ind_fl , models="true")
 

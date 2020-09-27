@@ -120,13 +120,13 @@ def fitnessPv(ind_fl,**options):
     v_init=str(simulation_vars[1])
     v_last=str(simulation_vars[2])
     
+
     r1=ind_fl[0,0]#Rshunt
     r2=ind_fl[0,1]#Rserie
-    ilambda=ind_fl[0,2] #ilambda
+    isat=ind_fl[0,2] #saturation current
     n=ind_fl[0,3]#emission coeef
-    temp=ind_fl[0,4]#temperature
-    isat=ind_fl[0,5]#saturation current
-    
+    ilambda=ind_fl[0,4]#lamda curent from irrad
+    temp=ind_fl[0,5]#temperature
     
     
     r_1=str(r1)

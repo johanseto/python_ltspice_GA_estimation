@@ -154,7 +154,7 @@ def fitnessPv(ind_fl,**options):
     
     #%% Create and run new netlist
     
-    LtspiceCallingPv(netlist,code,1.5)#0.5 seconds per simulation
+    LtspiceCallingPv(netlist,code,1)#0.5 seconds per simulation
     variables=['V(n002)','I(V1)']
     simulation=LtspiceCallingPv.getData(sim_raw, variables)# simulation_Model  
     

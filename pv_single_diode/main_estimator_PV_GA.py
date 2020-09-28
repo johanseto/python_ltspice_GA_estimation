@@ -82,7 +82,7 @@ while limit<=40:
     
 #%% plotting
 #fit_solution=np.array([upper[-1,:]])
-fit_solution=np.array([[1.946521368734263888e+03,1.888197756923780801e+01,1.201735957885099540e-05]])
+fit_solution=np.array([upper[-1,1:]])
 dist,measure,simulation_adjust=fitnessPv(fit_solution , models="true")
 from pylab import cm
 import matplotlib as mpl
@@ -91,11 +91,11 @@ import matplotlib.font_manager as fm
 
 colors = cm.get_cmap('tab10', 10)
 f, (ax1, ax2) = plt.subplots(2, 1)
-ax1.plot(simulation_adjust.t, simulation_adjust.i,linewidth=3, color=colors(0), 
+ax1.plot(simulation_adjust.v, simulation_adjust.i,linewidth=3, color=colors(0), 
          label=' i-simulada')
-ax1.plot(measure.t, measure.i,linewidth=3, color=colors(1), label='i- medida')
+ax1.plot(measure.v, measure.i,linewidth=3, color=colors(1), label='i- medida')
 ax1.set_title('Resultados')
-ax1.set_xlim(0, measure.t[-1])
+ax1.set_xlim(0, measure.v[-1])
 ax1.set_ylim(min(measure.i)-0.1, max(measure.i)+0.1)
 # ax1.set_xlabel('Iteracion(i)')
 
@@ -114,12 +114,12 @@ ax1.yaxis.set_major_locator(mpl.ticker.MultipleLocator(max(measure.i)/4  ))
 ax1.yaxis.set_minor_locator(mpl.ticker.MultipleLocator(max(measure.i)/2  ))
 ax1.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
-ax2.plot(simulation_adjust.t, simulation_adjust.v, linewidth=3,color=colors(0),
+ax2.plot(simulation_adjust.v, simulation_adjust.v, linewidth=3,color=colors(0),
          label='v-simulada')
-ax2.plot(measure.t, measure.v, linewidth=3,color=colors(1),
+ax2.plot(measure.v, measure.v, linewidth=3,color=colors(1),
          label='v-medida')
 
-ax2.set_xlim(0, measure.t[-1])
+ax2.set_xlim(0, measure.v[-1])
 ax2.set_ylim(min(measure.v)-10, max(measure.v)+10)
 ax2.set_ylabel(r'Tension(V)', labelpad=10)
 ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
@@ -140,12 +140,12 @@ ax2.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
 plt.figure()
 plt.subplot(211)
-plt.plot(simulation_adjust.t, simulation_adjust.i) 
-plt.plot(measure.t, measure.i)
+plt.plot(simulation_adjust.v, simulation_adjust.i) 
+plt.plot(measure.v, measure.i)
 
 plt.subplot(212)
-plt.plot(simulation_adjust.t, simulation_adjust.v) 
-plt.plot(measure.t, measure.v)
+plt.plot(simulation_adjust.v, simulation_adjust.v) 
+plt.plot(measure.v, measure.v)
 
 from sklearn.metrics import mean_squared_error
 mse = mean_squared_error(measure.i, simulation_adjust.i)

@@ -32,27 +32,27 @@ with open("simulation_vars.pickle", "wb") as f:
 
 
 #%%----------------------------GA------------------------------
-popu_size=40
+popu_size=200
 xover_rate=0.9
-mut_rate=0.3
+mut_rate=0.4
 bit_n=20
 limit=0
 epsilon=1e-0
 
 
 
-#ind_fl=np.array([[52.4768,0.0367251,0.760849,1.43,33,0.29815e-6]])
+#ind2=np.array([[52.4768,0.0367251,0.29815e-6,1.43,0.760849,33]])
 #]#Rshunt,Rserie,saturation currenta,emission coeef,ilambda,temperature
 fitness_fcn= 'fitnessPv'
-var_n=6
+var_n=5
 #with the deppendicie of number of cell n can change his value for a cosntant 
 #and the recision of if isat one cell(pA-ua) many cells:,(na-ua)
 rango=np.array([[0.1,1000],    
-                [0.1,100],      
+                [1e-6,10],      
                 [0.1e-9,100e-6], #Take care o the number of cell for precition
-                [1,3],           #Change fittness funtion for includes Kcells*n
-                [0.1e-3,10],
-                [0,100]])        
+                [1,2],           #Change fittness funtion for includes Kcells*n
+                [0.1e-3,1]])#cero to 1 in cells
+               # [0,100]])        
 
 popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 popu=popu*1
@@ -62,7 +62,7 @@ upper=np.array([]) #Matriz para mejores individuos
 #popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn) prueba de funcion  
 i=0
 
-while limit<=40:
+while limit<=25:
     
     #popu_fit means popu fit evaluated
     popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn)  

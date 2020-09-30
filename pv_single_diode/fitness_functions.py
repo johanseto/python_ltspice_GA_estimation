@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from estimator_classes import Model,LtspiceCalling
 from estimator_classes_pv import ModelPv,LtspiceCallingPv
-
+from sklearn.metrics import mean_squared_error
 
 
 def fitnessSnubber(ind_fl):
@@ -126,8 +126,8 @@ def fitnessPv(ind_fl,**options):
     isat=ind_fl[0,2] #saturation current
     n=ind_fl[0,3]#emission coeef
     ilambda=ind_fl[0,4]#lamda curent from irrad
-    temp=ind_fl[0,5]#temperature
-    
+    #temp=ind_fl[0,5]#temperature
+    temp=33
     
     r_1=str(r1)
     r_2=str(r2)
@@ -161,8 +161,14 @@ def fitnessPv(ind_fl,**options):
     #%% unify the models 
     simulation_adjust=ModelPv.unify_sim_model(measure,simulation)
     #Diference signals
-    dist = np.linalg.norm(measure.i-simulation_adjust.i)
-    dist=1/dist
+    #dist = np.linalg.norm(measure.i-simulation_adjust.i)
+    #dist=np.linalg.norm(measure.i*measure.v-simulation_adjust.i*simulation_adjust.v)
+    #lelement elemnt milpication for power
+    
+    mse = mean_squared_error(measure.i, simulation_adjust.i)
+    rmse=np.sqrt(mse) 
+    
+    dist=1/rmse
 
     if options.get("models")=="true":
         return dist,measure,simulation_adjust

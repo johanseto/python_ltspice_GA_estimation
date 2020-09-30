@@ -1,0 +1,53 @@
+
+   --- Expanded Deck Component Count ---
+B's 3
+K's 1
+L's 5
+R's 4
+V's 1
+tot: 14
+
+
+    --- Expanded Netlist ---
+* C:\Users\user\Desktop\asc_lstpice\trafo\trafo.asc
+r1 n003 n002 1
+r2 n004 n003 1
+r3 0 n005 1
+r4 n008 n011 45
+l1 n004 n005 1m
+l2 n005 0 0.5m
+l3 n006 n008 2m
+l4 0 n005 1m
+l5 n011 n006 9m
+v1 n007 0 sine(0 192 60)
+b1 nc_01 0 v=(white(2e6*time)/10)
+b2 n002 n007 v=20*(white(2e6*time/10))
+b3 n001 0 v=20*(white(2e6*time/10))
+.tran 50ms
+k l4 l5 1
+.options method=trap
+.end
+
+WARNING: Node N006 is floating.
+
+WARNING: Less than two connections to node NC_01.  This node is used by B1.
+WARNING: Less than two connections to node N001.  This node is used by B3.
+.OP point found by inspection.
+
+Date: Tue Sep 29 10:24:33 2020
+Total elapsed time: 2.660 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 603481
+traniter = 603481
+tranpoints = 139094
+accept = 104326
+rejected = 34768
+matrix size = 16
+fillins = 0
+solver = Normal
+Matrix Compiler1: 662 bytes object code size  0.4/0.2/[0.2]
+Matrix Compiler2: off  [0.2]/0.3/0.2
+

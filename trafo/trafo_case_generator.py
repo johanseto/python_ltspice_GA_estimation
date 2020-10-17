@@ -20,10 +20,10 @@ dt=str(dt)
 
 
 
-netlist= r'C:\Users\user\Desktop\python_spice\validate_trafo\trafo_single.net'
+netlist= r'C:\Users\user\Desktop\python_spice\trafo\trafo_single.net'
 
 
-code=('* C:\\Users\\user\\Desktop\\python_spice\\validate_trafo\\trafo_single.asc \n'
+code=('* C:\\Users\\user\\Desktop\\python_spice\\_trafo\\trafo_single.asc \n'
 'R1 N001 N002 1 \n'
 'L1 N002 N003 0.01 \n'
 'V1 N001 0 SINE(0 3394.11 60) \n'

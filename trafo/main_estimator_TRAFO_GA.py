@@ -7,7 +7,7 @@ Created on Thu May 14 15:51:30 2020
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
-from estimator_classes import Model
+from estimator_classes_trafo import ModelTrafo
 from functions_GA import evalPopu,upperData,nextPopu
 from fitness_functions import fitnessCfl
 
@@ -17,18 +17,17 @@ from fitness_functions import fitnessCfl
 
 
 # new reading files
-voltage_file='voltage.csv'
-current_file='current.csv'
+signals_file='values_noise.csv'
+#measure=ModelTrafo.read_csv_signal(signals_file)
 
-measure,simulation_vars=Model.signals_caracteristics(voltage_file,
-                                                     current_file)
+measure,simulation_vars=ModelTrafo.signals_caracteristics(signals_file)
 
 #save classes to functions
-with open("measure.pickle", "wb") as f:
-    pickle.dump(measure, f)
+# with open("measure.pickle", "wb") as f:
+#     pickle.dump(measure, f)
 
-with open("simulation_vars.pickle", "wb") as f:
-    pickle.dump(simulation_vars, f)
+# #with open("simulation_vars.pickle", "wb") as f:
+#     pickle.dump(simulation_vars, f)
 
 
 

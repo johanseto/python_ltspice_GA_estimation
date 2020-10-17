@@ -32,7 +32,7 @@ with open("simulation_vars.pickle", "wb") as f:
 
 
 #%%----------------------------GA------------------------------
-popu_size=200
+popu_size=50
 xover_rate=0.9
 mut_rate=0.4
 bit_n=20
@@ -62,7 +62,7 @@ upper=np.array([]) #Matriz para mejores individuos
 #popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn) prueba de funcion  
 i=0
 
-while limit<=25:
+while limit<=40:
     
     #popu_fit means popu fit evaluated
     popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn)  

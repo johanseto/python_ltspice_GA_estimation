@@ -1,0 +1,43 @@
+
+   --- Expanded Deck Component Count ---
+K's 1
+L's 4
+R's 3
+V's 1
+tot: 9
+
+
+    --- Expanded Netlist ---
+* C:\Users\user\Desktop\python_spice\validate_trafo\trafo_single.asc
+r1 n001 n002 1
+l1 n002 n003 0.01
+v1 n001 0 sine(0 3394.11 60)
+r2 n003 0 1000
+r3 n005 0 100
+l2 n003 0 1
+l3 n004 0 0.01
+l4 n004 n005 0.2m
+.tran 50ms
+k l2 l3 1
+.options maxstep=0.1e-6
+.end
+
+.OP point found by inspection.
+
+Date: Fri Oct 16 19:14:58 2020
+Total elapsed time: 10.744 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 1000062
+traniter = 1000062
+tranpoints = 500032
+accept = 500031
+rejected = 1
+matrix size = 8
+fillins = 0
+solver = Normal
+Matrix Compiler1: 300 bytes object code size  0.3/0.1/[0.1]
+Matrix Compiler2: off  [0.1]/0.2/0.1
+

@@ -63,41 +63,67 @@ plt.plot(time,simulation.v1)
 
 #%%Make some noise
 
+def add_noise(signal,mu,sigma):
+        noise = np.random.normal(mu, sigma,signal.shape) 
+        rms = np.sqrt(np.mean(signal**2))
+        signal_noise=rms*noise+signal
+        return signal_noise
+    
+mu, sigma = 0, 0.02
+
 v1_test=2400*np.sqrt(2)*np.sin(377*time_test)
 v2_test=v1_test/10
-plt.figure()
-plt.plot(time_test,v1_test)
+
+
+
 model_ref=ModelTrafo(time_test,v1_test,v1_test,v1_test,v1_test)
-
 model_test=ModelTrafo.unify_sim_model(model_ref,simulation)
-plt.plot(model_test.t,model_test.v1)
+model_testn=model_test #ccreate the model with noise
+model_testn.v1=add_noise(model_testn.v1, mu, sigma)
+model_testn.i1=add_noise(model_testn.i1, mu, sigma)
+model_testn.v2=add_noise(model_testn.v2, mu, sigma)
+model_testn.i2=add_noise(model_testn.i2, mu, sigma)
 
-plt.figure()
-plt.plot(time_test,v2_test)
-plt.plot(model_test.t,model_test.v2)
-dist = np.linalg.norm(v1_test-model_test.v1)
-print(dist)
+#....Plotting
+plt.figure('v1')
+plt.plot(model_test.t,v1_test,label='señal pura')
+plt.plot(model_test.t,model_test.v1,label='señal simulada')
+plt.plot(model_test.t,model_testn.v1,label='señal simulada con ruido')
+plt.savefig('comparacion perfecta-simulada.svg')
+plt.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
+
+plt.figure('i1')
+plt.plot(model_test.t,model_test.i1,label='señal simulada')
+plt.plot(model_test.t,model_testn.i1,label='señal simulada con ruido')
+plt.savefig('comparacion perfecta-simulada.svg')
+plt.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
+
+plt.figure('v2')
+plt.plot(model_test.t,v2_test,label='señal pura')
+plt.plot(model_test.t,model_test.v2,label='señal simulada')
+plt.plot(model_test.t,model_testn.v2,label='señal simulada con ruido')
+plt.savefig('comparacion perfecta-simulada.svg')
+plt.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
+
+plt.figure('i2')
+plt.plot(model_test.t,model_test.i2,label='señal simulada')
+plt.plot(model_test.t,model_testn.i2,label='señal simulada con ruido')
+plt.savefig('comparacion perfecta-simulada.svg')
+plt.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
 from sklearn.metrics import mean_squared_error
-mse=mean_squared_error(v1_test,model_test.v1)
+mse=mean_squared_error(v1_test,model_testn.v1)
 print(mse)
 
+# creating  
 
-mu, sigma = 0, 0.01 
-# creating a noise with the same dimension as the dataset (2,2) 
-noise = np.random.normal(mu, sigma,model_test.v1.shape) 
-print(noise)
-y=2400*noise+model_test.v1
-plt.figure()
-plt.plot(model_test.t,y)
-model_test.v1=y
-rms = np.sqrt(np.mean(model_test.v1**2))
+
 #%% Guardar  datos modelo modelo en csv
-array2csv=np.array([model_test.t,model_test.v1,model_test.i1,
-                   model_test.v2,model_test.i2])
+array2csv=np.array([model_testn.t,model_testn.v1,model_testn.i1,
+                   model_testn.v2,model_testn.i2])
 array2csv=array2csv.T
 
 import pandas as pd 
 pd.DataFrame(array2csv).to_csv("values.csv")
-array2csv.tofile('values0.csv',sep=',',format='%10.5f')
+array2csv.tofile('valuestrol.csv',sep=',',format='%10.5f')
 np.savetxt('values2.csv', array2csv, delimiter=",")

@@ -14,7 +14,7 @@ time_test=np.arange(0,50e-3,dt)
 
 #%Python netlist modifications
 
-dt=dt*1000
+dt=dt
 
 dt=str(dt)
 
@@ -34,7 +34,7 @@ code=('* C:\\Users\\user\\Desktop\\python_spice\\_trafo\\trafo_single.asc \n'
 'L4 N004 N005 0.2m \n'
 '.tran 50ms \n'
 'K L2 L3 1 \n'
-'.options  maxstep=0.1e-6 \n'
+'.options maxstep=1e-6 \n'
 '.backanno \n'
 '.end \n'
 )

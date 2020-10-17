@@ -5,7 +5,7 @@ Created on Mon Feb 10 19:59:12 2020
 @author: JohanV
 """
 import numpy as np
-from fitness_functions import fitnessSnubber,fitnessCfl
+from fitness_functions import fitnessSnubber,fitnessCfl,fitnessTrafo
 
 def evalPopu(popu,bit_n,rango,obj_fcn):
     global count

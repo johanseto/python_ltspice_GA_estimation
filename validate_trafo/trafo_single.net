@@ -1,4 +1,4 @@
-* C:\Users\user\Desktop\python_spice\validate_trafo\trafo_single.asc 
+* C:\Users\user\Desktop\python_spice\_trafo\trafo_single.asc 
 R1 N001 N002 1 
 L1 N002 N003 0.01 
 V1 N001 0 SINE(0 3394.11 60) 
@@ -9,6 +9,6 @@ L3 N004 0 0.01
 L4 N004 N005 0.2m 
 .tran 50ms 
 K L2 L3 1 
-.options  maxstep=0.1e-6 
+.options maxstep=0.1e-6 
 .backanno 
 .end 

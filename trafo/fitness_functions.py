@@ -9,6 +9,7 @@ import numpy as np
 import pickle
 from estimator_classes import Model,LtspiceCalling
 from estimator_classes_trafo import ModelTrafo,LtspiceCallingTrafo
+from estimator_classes_pv import ModelPv,LtspiceCallingPv
 from sklearn.metrics import mean_squared_error
 
 
@@ -175,3 +176,77 @@ def fitnessPv(ind_fl,**options):
     else:
         return dist
     
+#%%---------------------FITNESS FUNCTION TRAF
+def fitnessTrafo(ind_fl,**options):
+    sim_name='trafo_single'
+    sim_raw='/'+sim_name+'.raw'
+    
+    #adquire caracterstics from measure signal
+    with open("measure.pickle", "rb") as f:
+        measure = pickle.load(f)
+    with open("simulation_vars.pickle", "rb") as f:
+        simulation_vars = pickle.load(f)
+        
+
+
+    #%Python netlist modifications
+    t_init=str(simulation_vars[0])
+    t_last=str(simulation_vars[1])
+    dt=str(simulation_vars[2])
+    vmax=str(simulation_vars[3])
+    t_init=str(0)
+    
+    r1=str(ind_fl[0,0])
+    r2=str(ind_fl[0,1])
+    L1=str(ind_fl[0,2])
+    L2=str(ind_fl[0,3])
+    L3=str(ind_fl[0,4])
+    
+    
+    netlist= r'C:\Users\user\Desktop\python_spice\trafo\trafo_single.net'
+    
+    
+    code=('* C:\\Users\\user\\Desktop\\python_spice\\_trafo\\trafo_single.asc \n'
+    'R1 N001 N002 '+r1+' \n'
+    'L1 N002 N003 '+L1+' \n'
+    'V1 N001 0 SINE(0 '+vmax+' 60) \n'
+    'R2 N003 0 '+r2+' \n'
+    'R3 N005 0 100 \n'
+    'L2 N003 0 '+L2+' \n'
+    'L3 N004 0 '+L3+' \n'
+    'L4 N004 N005 0.2m \n'
+    '.tran '+dt+' '+t_last+' '+t_init+' \n'
+    'K L2 L3 1 \n'
+    '.options  \n'
+    '.backanno \n'
+    '.end \n'
+    )
+
+
+
+    #%% Create and run new netlist
+    
+    LtspiceCallingTrafo(netlist,code,1)#0.5 seconds per simulation
+    variables=['V(n001)','I(R1)','V(n004)','I(L4)']
+    simulation=LtspiceCallingTrafo.getData(sim_raw, variables)# simulation_Model
+    
+    #%% unify the models 
+    simulation_adjust=ModelTrafo.unify_sim_model(measure,simulation)
+    #Diference signals
+    #dist = np.linalg.norm(measure.i-simulation_adjust.i)
+    #dist=np.linalg.norm(measure.i*measure.v-simulation_adjust.i*simulation_adjust.v)
+    #lelement elemnt milpication for power
+    
+    rmse_v1 = np.sqrt(mean_squared_error(measure.v1, simulation_adjust.v1))
+    rmse_i1=np.sqrt(mean_squared_error(measure.i1, simulation_adjust.i1))
+    rmse_v2=np.sqrt(mean_squared_error(measure.v2, simulation_adjust.v2))
+    rmse_i2=np.sqrt(mean_squared_error(measure.i2, simulation_adjust.i2))
+    
+    rmse=[rmse_v1,rmse_i1,rmse_v2,rmse_i2] #vector de  normas
+    rmse_norm=np.linalg.norm(rmse)
+    dist=1/rmse_norm
+
+    if options.get("models")=="true":
+        return dist,measure,simulation_adjust
+    else:
+        return dist

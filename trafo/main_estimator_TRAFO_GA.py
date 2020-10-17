@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from estimator_classes_trafo import ModelTrafo
 from functions_GA import evalPopu,upperData,nextPopu
-from fitness_functions import fitnessCfl
+from fitness_functions import fitnessTrafo
 
 
 
@@ -23,11 +23,11 @@ signals_file='values_noise.csv'
 measure,simulation_vars=ModelTrafo.signals_caracteristics(signals_file)
 
 #save classes to functions
-# with open("measure.pickle", "wb") as f:
-#     pickle.dump(measure, f)
+with open("measure.pickle", "wb") as f:
+    pickle.dump(measure, f)
 
-# #with open("simulation_vars.pickle", "wb") as f:
-#     pickle.dump(simulation_vars, f)
+with open("simulation_vars.pickle", "wb") as f:
+    pickle.dump(simulation_vars, f)
 
 
 
@@ -41,16 +41,21 @@ epsilon=1e-0
 
 
 
-r1=5.978e2
-r2=60
-c1=3.62e-6
+#r1=1
+#r2=1000
+#L1=0.01
+#L2=1
+#L3=0.01 #ASsociada a numero de vueltas
 
-fitness_fcn= 'fitnessCfl'
-var_n=3
 
-rango=np.array([[0.1,10e3],
-                [0.1,1e3],
-                [1-9,100e-6]])
+fitness_fcn= 'fitnessTrafo'
+var_n=5
+
+rango=np.array([[1e-3,1000],
+                [1e-3,10000],
+                [1e-6,50],
+                [1e-6,30],
+                [1e-6,50]])
 
 popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 popu=popu*1
@@ -78,22 +83,22 @@ while limit<=40:
     
     
     
+
 #%% plotting
 #fit_solution=np.array([upper[-1,:]])
-fit_solution=np.array([[1.946521368734263888e+03,1.888197756923780801e+01,1.201735957885099540e-05]])
-dist,measure,simulation_adjust=fitnessCfl(fit_solution , models="true")
+fit_solution=np.array([upper[-1,1:]])
+dist,measure,simulation_adjust=fitnessTrafo(fit_solution , models="true")
 from pylab import cm
 import matplotlib as mpl
-import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 colors = cm.get_cmap('tab10', 10)
 f, (ax1, ax2) = plt.subplots(2, 1)
-ax1.plot(simulation_adjust.t, simulation_adjust.i,linewidth=3, color=colors(0), 
+ax1.plot(simulation_adjust.t, simulation_adjust.i1,linewidth=3, color=colors(0), 
          label=' i-simulada')
-ax1.plot(measure.t, measure.i,linewidth=3, color=colors(1), label='i- medida')
+ax1.plot(measure.t, measure.i1,linewidth=3, color=colors(1), label='i- medida')
 ax1.set_title('Resultados')
-ax1.set_xlim(0, measure.t[-1])
+ax1.set_xlim(0, measure.v[-1])
 ax1.set_ylim(min(measure.i)-0.1, max(measure.i)+0.1)
 # ax1.set_xlabel('Iteracion(i)')
 
@@ -112,12 +117,12 @@ ax1.yaxis.set_major_locator(mpl.ticker.MultipleLocator(max(measure.i)/4  ))
 ax1.yaxis.set_minor_locator(mpl.ticker.MultipleLocator(max(measure.i)/2  ))
 ax1.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
-ax2.plot(simulation_adjust.t, simulation_adjust.v, linewidth=3,color=colors(0),
+ax2.plot(simulation_adjust.v, simulation_adjust.v, linewidth=3,color=colors(0),
          label='v-simulada')
-ax2.plot(measure.t, measure.v, linewidth=3,color=colors(1),
+ax2.plot(measure.v, measure.v, linewidth=3,color=colors(1),
          label='v-medida')
 
-ax2.set_xlim(0, measure.t[-1])
+ax2.set_xlim(0, measure.v[-1])
 ax2.set_ylim(min(measure.v)-10, max(measure.v)+10)
 ax2.set_ylabel(r'Tension(V)', labelpad=10)
 ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
@@ -137,27 +142,35 @@ ax2.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
 
 plt.figure()
-plt.subplot(211)
-plt.plot(simulation_adjust.t, simulation_adjust.i) 
-plt.plot(measure.t, measure.i)
+plt.subplot(221)
+plt.plot(simulation_adjust.t, simulation_adjust.v1) 
+plt.plot(measure.t, measure.v1)
 
-plt.subplot(212)
-plt.plot(simulation_adjust.t, simulation_adjust.v) 
-plt.plot(measure.t, measure.v)
+plt.subplot(222)
+plt.plot(simulation_adjust.t, simulation_adjust.v2) 
+plt.plot(measure.t, measure.v2)
+
+plt.subplot(223)
+plt.plot(simulation_adjust.t, simulation_adjust.i1) 
+plt.plot(measure.t, measure.i1)
+
+plt.subplot(224)
+plt.plot(simulation_adjust.t, simulation_adjust.i2) 
+plt.plot(measure.t, measure.i2)
+
 
 from sklearn.metrics import mean_squared_error
 mse = mean_squared_error(measure.i, simulation_adjust.i)
 rmse=np.sqrt(mse)
 
-rms_v = np.sqrt(np.mean(measure.v**2))
-rms_imeas = np.sqrt(np.mean(measure.i**2))
-rms_isim = np.sqrt(np.mean(simulation_adjust.i**2))
+rms_v = np.sqrt(np.mean(measure.v1**2))
+rms_imeas = np.sqrt(np.mean(measure.i1**2))
+rms_isim = np.sqrt(np.mean(simulation_adjust.i1**2))
 
 square_relative_error_fromIrms=rmse/rms_imeas
-relative_root_mean_square_error=rmse/sum(measure.i)
+relative_root_mean_square_error=rmse/sum(measure.i1)
 
 #%%Searching times 
-import pickle
 with open("time.pickle", "rb") as f:
     time_sim = pickle.load(f)
     

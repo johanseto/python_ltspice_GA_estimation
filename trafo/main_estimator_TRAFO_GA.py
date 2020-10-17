@@ -58,7 +58,7 @@ rango=np.array([[1e-3,1000],
                 [1e-6,50]])
 
 popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
-popu=popu*1
+popu=popu*1 #pass from bolean to int
 
 upper=np.array([]) #Matriz para mejores individuos
 

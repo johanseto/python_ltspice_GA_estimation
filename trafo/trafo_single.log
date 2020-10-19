@@ -9,13 +9,13 @@ tot: 9
 
     --- Expanded Netlist ---
 * C:\Users\user\Desktop\python_spice\_trafo\trafo_single.asc
-r1 n001 n002 604.547583978027
-l1 n002 n003 0.10605120006103609
+r1 n001 n002 0.10111208791208791
+l1 n002 n003 2.3357758686202685
 v1 n001 0 sine(0 3398.2945299964877 60)
-r2 n003 0 4861.9826607461655
+r2 n003 0 108.91425445665446
 r3 n005 0 100
-l2 n003 0 15.809110109102006
-l3 n004 0 38.46952033437095
+l2 n003 0 0.13797411037851037
+l3 n004 0 0.846154676923077
 l4 n004 n005 0.2m
 .tran 6.510416666666664e-05 0.04993489583333333 0
 k l2 l3 1
@@ -24,20 +24,20 @@ k l2 l3 1
 
 .OP point found by inspection.
 
-Date: Sat Oct 17 15:52:05 2020
-Total elapsed time: 0.218 seconds.
+Date: Mon Oct 19 08:10:45 2020
+Total elapsed time: 0.109 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 2134
-traniter = 2134
-tranpoints = 1068
-accept = 1066
+totiter = 2140
+traniter = 2140
+tranpoints = 1071
+accept = 1069
 rejected = 2
 matrix size = 8
-fillins = 4
+fillins = 0
 solver = Normal
-Matrix Compiler1: 460 bytes object code size  0.3/0.2/[0.2]
-Matrix Compiler2: 608 bytes object code size  0.2/0.3/[0.2]
+Matrix Compiler1:      18 opcodes  0.2/[0.1]/0.1
+Matrix Compiler2: off  [0.1]/0.2/0.1
 

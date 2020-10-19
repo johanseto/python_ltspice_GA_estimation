@@ -32,10 +32,10 @@ with open("simulation_vars.pickle", "wb") as f:
 
 
 #%%----------------------------GA------------------------------
-popu_size=40
-xover_rate=0.9
-mut_rate=0.3
-bit_n=16
+popu_size=200
+xover_rate=0.95
+mut_rate=0.05
+bit_n=12
 limit=0
 epsilon=1e-0
 
@@ -51,11 +51,11 @@ epsilon=1e-0
 fitness_fcn= 'fitnessTrafo'
 var_n=5
 
-rango=np.array([[1e-3,1000],
-                [1e-3,10000],
-                [1e-6,50],
-                [1e-6,30],
-                [1e-6,50]])
+rango=np.array([[1e-3,10],
+                [1e-3,2000],
+                [1e-6,5],
+                [1e-6,5],
+                [1e-6,5]])
 
 popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 popu=popu*1 #pass from bolean to int

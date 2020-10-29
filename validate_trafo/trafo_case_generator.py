@@ -43,7 +43,7 @@ code=('* C:\\Users\\user\\Desktop\\python_spice\\validate_trafo\\trafo_single.as
 
 #%% Create and run new netlist
 
-LtspiceCallingTrafo(netlist,code,5)#0.5 seconds per simulation
+LtspiceCallingTrafo(netlist,code,6)#0.5 seconds per simulation
 variables=['V(n001)','I(R1)','V(n004)','I(L4)']
 simulation=LtspiceCallingTrafo.getData(sim_raw, variables)# simulation_Model  
     
@@ -87,31 +87,33 @@ model_testn.i2=add_noise(model_testn.i2, mu, sigma)
 
 #....Plotting
 plt.figure('v1')
-plt.plot(model_test.t,v1_test,label='señal pura')
-plt.plot(model_test.t,model_test.v1,label='señal simulada',linewidth=2)
-plt.plot(model_test.t,model_testn.v1,label='señal simulada con ruido',alpha=0.8)
-plt.savefig('comparacion perfecta-simulada-v1.svg')
-plt.legend(bbox_to_anchor=(0.9, 0.9), loc=10, frameon=True, fontsize=12)
+ax1=plt.subplot(2,2,1)
 
-plt.figure('i1')
-plt.plot(model_test.t,model_test.i1,label='señal simulada',linewidth=2)
-plt.plot(model_test.t,model_testn.i1,label='señal simulada con ruido',alpha=0.8)
-plt.savefig('comparacion perfecta-simulada-i1.svg')
-plt.legend(bbox_to_anchor=(0.9, 0.9), loc=10, frameon=True, fontsize=12)
+ax1.plot(model_test.t,model_test.v1,'--',label='señal simulada',linewidth=0.6,color='black')
+ax1.plot(model_test.t,model_testn.v1,label='señal simulada con ruido',alpha=0.4,linewidth=2,color='GREEN')
+#plt.savefig('comparacion perfecta-simulada-v1.svg')
+ax1.set_ylabel('Tensión')
 
-plt.figure('v2')
-plt.plot(model_test.t,v2_test,label='señal pura')
-plt.plot(model_test.t,model_test.v2,label='señal simulada',linewidth=2)
-plt.plot(model_test.t,model_testn.v2,label='señal simulada con ruido',alpha=0.8)
-plt.savefig('comparacion perfecta-simulada-v2.svg')
-plt.legend(bbox_to_anchor=(0.9, 0.9), loc=10, frameon=True, fontsize=12)
+ax3=plt.subplot(2,2,3)
+ax3.plot(model_test.t,model_test.i1,'--',label='señal simulada',linewidth=0.6,color='black')
+ax3.plot(model_test.t,model_testn.i1,label='señal simulada con ruido',alpha=0.4,linewidth=2,color='GREEN')
+#plt.savefig('comparacion perfecta-simulada-i1.svg')
+ax3.set_ylabel('Corriente')
+ax3.set_xlabel('tiempo(s)')
 
-plt.figure('i2')
-plt.plot(model_test.t,model_test.i2,label='señal simulada',linewidth=2)
-plt.plot(model_test.t,model_testn.i2,label='señal simulada con ruido',alpha=0.8)
-plt.savefig('comparacion perfecta-simulada-i2.svg')
-plt.legend(bbox_to_anchor=(0.9, 0.9), loc=10, frameon=True, fontsize=12)
+ax2=plt.subplot(2,2,2)
+ax2.plot(model_test.t,model_test.v2,'--',label='Señal simulada',linewidth=0.6,color='black')
+ax2.plot(model_test.t,model_testn.v2,label='Señal simulada con ruido',alpha=0.4,linewidth=2,color='GREEN')
+#plt.savefig('comparacion perfecta-simulada-v2.svg')
+ax2.legend(bbox_to_anchor=(0, 1.2), loc=10, frameon=True, fontsize=10)
 
+
+ax4=plt.subplot(2,2,4)
+ax4.plot(model_test.t,model_test.i2,'--',label='señal simulada',linewidth=0.6,color='black')
+ax4.plot(model_test.t,model_testn.i2,label='señal simulada con ruido',alpha=0.4,linewidth=2,color='GREEN')
+ax4.set_xlabel('tiempo(s)')
+plt.savefig('comparacion seniales.svg')
+#plt.savefig('comparacion perfecta-simulada-i2.svg')
 from sklearn.metrics import mean_squared_error
 mse=mean_squared_error(v1_test,model_testn.v1)
 print(mse)

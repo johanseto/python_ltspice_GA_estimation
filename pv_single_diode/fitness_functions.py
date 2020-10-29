@@ -168,7 +168,7 @@ def fitnessPv(ind_fl,**options):
     mse = mean_squared_error(measure.i, simulation_adjust.i)
     rmse=np.sqrt(mse) 
     
-    dist=1/rmse
+    dist=-rmse
 
     if options.get("models")=="true":
         return dist,measure,simulation_adjust

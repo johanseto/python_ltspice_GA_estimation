@@ -87,5 +87,6 @@ today_str='{:%Y-%b-%d-%H_%M}'.format(today)
 np.save('upper_'+today_str+'.npy',upper)
 np.save('popu_'+today_str+'.npy',popu)
 #%% plotting
-plotting(upper)
+cost1=plotting(upper)
 upper2=np.array([[0,52.4768,0.0367251,0.29815e-6,1.43,0.760849]])
+cost2=plotting(upper2)

@@ -33,9 +33,9 @@ with open("simulation_vars.pickle", "wb") as f:
 
 
 #%%----------------------------GA------------------------------
-popu_size=250
+popu_size=100
 xover_rate=0.98
-mut_rate=0.1
+mut_rate=0.4
 bit_n=10
 limit=0
 epsilon=1e-0
@@ -60,13 +60,19 @@ rango=np.array([[1e-3,10],
 
 # popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 # popu=popu*1 #pass from bolean to int
-popu=np.load('popu_2020-Oct-28-01_23.npy')
+popu=np.load('popu_2020-Oct-31-23_24.npy')
 upper=np.array([]) #Matriz para mejores individuos
 
-
+# seed1=[0,0,0,1,1,0,0,1,1,0]
+# seed2=[1,0,0,0,0,0,0,0,0,0]
+# seed3=[0,0,0,0,0,0,0,1,0,1]
+# seed4=[1,0,0,0,0,0,0,0,0,0]
+# seed5=[0,0,0,0,0,0,0,1,0,1]
+# seed=np.concatenate((seed1, seed2,seed3,seed4,seed5))
+# popu[2,:]=seed
 i=0
 
-while limit<=15:
+while limit<=20:
     
     #popu_fit means popu fit evaluated
     popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn)  
@@ -95,3 +101,4 @@ np.save('popu_'+today_str+'.npy',popu)
 #%% plotting
 plotting(upper)
 upper2=np.array([[0,1,1000,0.01,1,0.01]])
+dist=plotting(upper2)

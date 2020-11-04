@@ -236,12 +236,12 @@ def fitnessTrafo(ind_fl,**options):
     #dist = np.linalg.norm(measure.i-simulation_adjust.i)
     #dist=np.linalg.norm(measure.i*measure.v-simulation_adjust.i*simulation_adjust.v)
     #lelement elemnt milpication for power
-    base_v1=max(measure.v1)
-    base_i1=max(measure.i1)
-    base_v2=max(measure.v2)
-    base_i2=max(measure.i2)
-    rmse_v1 = np.sqrt(mean_squared_error(measure.v1,
-                                         simulation_adjust.v1))/base_v1
+   # base_v1=max(measure.v1)-min(measure.v1)
+    base_i1=max(measure.i1)-min(measure.i1)
+    base_v2=max(measure.v2)-min(measure.v2)
+    base_i2=max(measure.i2)-min(measure.i2)
+   # rmse_v1 = np.sqrt(mean_squared_error(measure.v1,
+                                        # simulation_adjust.v1))/base_v1
     rmse_i1=np.sqrt(mean_squared_error(measure.i1/base_i1,
                                        simulation_adjust.i1/base_i1))#equival
     rmse_v2=np.sqrt(mean_squared_error(measure.v2/base_v2,
@@ -249,7 +249,7 @@ def fitnessTrafo(ind_fl,**options):
     rmse_i2=np.sqrt(mean_squared_error(measure.i2/base_i2,
                                        simulation_adjust.i2/base_i2))
     
-    rmse=[rmse_v1,rmse_i1,rmse_v2,rmse_i2] #vector de  normas
+    rmse=[rmse_i1,rmse_v2,rmse_i2] #vector de  normas
     rmse_norm=np.linalg.norm(rmse)
     dist=-rmse_norm
 

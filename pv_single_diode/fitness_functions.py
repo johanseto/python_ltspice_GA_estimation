@@ -127,12 +127,13 @@ def fitnessPv(ind_fl,**options):
     n=ind_fl[0,3]#emission coeef
     ilambda=ind_fl[0,4]#lamda curent from irrad
     #temp=ind_fl[0,5]#temperature
-    temp=33
+    temp=20   #Set the temperature to the experiment
     
     r_1=str(r1)
     r_2=str(r2)
     i_lambda=str(ilambda)
-    n_s=str(n)
+    #n_s=str(n)
+    n_s=str(n*4) #series cell
     temp_work=str(temp)
     i_sat=str(isat)    
     

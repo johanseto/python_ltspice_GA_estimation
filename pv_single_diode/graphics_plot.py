@@ -40,9 +40,9 @@ axis3.plot(upper[:,2])
 axis3.set_ylabel('$R_{s}$ [$\Omega$]')
 axis3.set_xlabel('$iteración$ [i]')
 
-axis4.plot(upper[:,3]*10e6)
+axis4.plot(upper[:,3]*1e9)
 #axis4.title('Funcion fitness')
-axis4.set_ylabel('$I_s$ [$uA$]')
+axis4.set_ylabel('$I_s$ [$nA$]')
 axis4.set_xlabel('$iteración$ [i]')
 
 axis5.plot(upper[:,1])

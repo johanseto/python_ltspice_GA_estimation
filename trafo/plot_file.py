@@ -94,8 +94,8 @@ def plotting(upper):
     
     square_relative_error_fromIrms=rmse/rms_imeas
     relative_root_mean_square_error=rmse/sum(measure.i1)
-
-#%%Searching times 
+    return dist
+    #%%Searching times 
 # with open("time.pickle", "rb") as f:
 #     time_sim = pickle.load(f)
     

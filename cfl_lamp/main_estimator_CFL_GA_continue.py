@@ -16,7 +16,6 @@ import datetime
 
 
 
-
 # new reading files
 voltage_file='voltage.csv'
 current_file='current.csv'
@@ -54,9 +53,9 @@ rango=np.array([[0.1,10e3],
                 [0.1,1e3],
                 [1-9,100e-6]])
 
-popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
-popu=popu*1
-
+#popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
+#popu=popu*1
+popu=np.load('popu_2020-Oct-29-08_45.npy')#puth the numoy prevoius results
 upper=np.array([]) #Matriz para mejores individuos
 
 #popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn) prueba de funcion  
@@ -77,6 +76,7 @@ while limit<=40:
           
     i+=1
     popu=nextPopu(popu,popu_eval,xover_rate,mut_rate)
+    
     
     
     

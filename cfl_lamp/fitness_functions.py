@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from estimator_classes import Model,LtspiceCalling
 import matplotlib.pyplot as plt
-
+from sklearn.metrics import mean_squared_error
 
 def fitnessSnubber(ind_fl):
     fitness=np.sqrt(ind_fl[0,0]/ind_fl[0,1])    
@@ -81,19 +81,12 @@ def fitnessCfl(ind_fl,**options):
     
     
     #Diference signals
-    dist = np.linalg.norm(measure.i-simulation_adjust.i)
-    dist=1/dist
+    #dist = np.linalg.norm(measure.i-simulation_adjust.i)
+    mse=mean_squared_error(measure.i, simulation_adjust.i)
+    dist=-mse
     #     #%% plotting
 
-    # plt.figure()
-    # plt.subplot(211)
-    # plt.plot(simulation_adjust.t, simulation_adjust.i) 
-    # plt.plot(measure.t, measure.i)
-    
-    # plt.subplot(212)
-    # plt.plot(simulation_adjust.t, simulation_adjust.v) 
-    # plt.plot(measure.t, measure.v)
-    
+
     #  Control the output of the function
     if options.get("models")=="true":
         return dist,measure,simulation_adjust

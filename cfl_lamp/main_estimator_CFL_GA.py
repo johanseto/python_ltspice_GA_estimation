@@ -4,12 +4,11 @@ Created on Thu May 14 15:51:30 2020
 
 @author: user
 """
-import matplotlib.pyplot as plt
+
 import numpy as np
 import pickle
 from estimator_classes import Model
 from functions_GA import evalPopu,upperData,nextPopu
-from fitness_functions import fitnessCfl
 from plot_file import plotting
 import datetime
 
@@ -34,9 +33,9 @@ with open("simulation_vars.pickle", "wb") as f:
 
 
 #%%----------------------------GA------------------------------
-popu_size=40
-xover_rate=0.9
-mut_rate=0.3
+popu_size=60
+xover_rate=0.98
+mut_rate=0.01
 bit_n=16
 limit=0
 epsilon=1e-0
@@ -62,7 +61,7 @@ upper=np.array([]) #Matriz para mejores individuos
 #popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn) prueba de funcion  
 i=0
 
-while limit<=40:
+while limit<=25:
     
     #popu_fit means popu fit evaluated
     popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn)  
@@ -91,5 +90,5 @@ np.save('popu_'+today_str+'.npy',popu)
 #fit_solution=np.array([upper[-1,:]])
 fit_solution=np.array([[1.946521368734263888e+03,1.888197756923780801e+01,1.201735957885099540e-05]])
 cost1=plotting(fit_solution)
-fit_solution_ga=np.array([upper[-1,:]])
+fit_solution_ga=np.array([upper[-1,1:]])
 cost2=plotting(fit_solution_ga)

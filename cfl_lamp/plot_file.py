@@ -97,10 +97,11 @@ def plotting(fit_solution):
     rms_v = np.sqrt(np.mean(measure.v**2))
     rms_imeas = np.sqrt(np.mean(measure.i**2))
     rms_isim = np.sqrt(np.mean(simulation_adjust.i**2))
-    
+    norma2_diff = np.linalg.norm(measure.i-simulation_adjust.i)
     square_relative_error_fromIrms=rmse/rms_imeas
     relative_root_mean_square_error=rmse/sum(measure.i)
-    metrics={'norma2_euclidea':1/dist,'mse':mse,'rmse':rmse,
+    metrics={'fitness':dist,'mse':mse,'rmse':rmse,
              'sqre':square_relative_error_fromIrms,
-             'rrmse':relative_root_mean_square_error}
+             'rrmse':relative_root_mean_square_error,
+             'norma2Diff':norma2_diff}
     return metrics

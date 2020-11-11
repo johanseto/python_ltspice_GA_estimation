@@ -50,7 +50,7 @@ var_n=3
 
 rango=np.array([[0.1,10e3],
                 [0.1,1e3],
-                [1-9,100e-6]])
+                [1e-9,100e-6]])
 
 #popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
 #popu=popu*1

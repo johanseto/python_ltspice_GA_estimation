@@ -105,3 +105,4 @@ def plotting(fit_solution):
              'rrmse':relative_root_mean_square_error,
              'norma2Diff':norma2_diff}
     return metrics
+

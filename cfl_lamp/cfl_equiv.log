@@ -22,6 +22,7 @@ v1 n002 n004 sine(0 170.83060321432882 60 0 0 -240.84000000000003)
 .options maxstep=1.25-5
 .end
 
+<<<<<<< HEAD
 Direct Newton iteration for .op point succeeded.
 
 Date: Thu Nov 05 18:11:28 2020
@@ -41,3 +42,5 @@ solver = Normal
 Matrix Compiler1: 398 bytes object code size  0.2/0.1/[0.1]
 Matrix Compiler2: off  [0.1]/0.2/0.1
 
+=======
+>>>>>>> 877cf33fd218bf9aebf66dea680329ed11a3bdc1

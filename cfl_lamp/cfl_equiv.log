@@ -1,21 +1,2 @@
 Circuit: * C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.asc
 
-Direct Newton iteration for .op point succeeded.
-
-Date: Thu Nov 05 14:13:11 2020
-Total elapsed time: 0.212 seconds.
-
-tnom = 27
-temp = 27
-method = modified trap
-totiter = 653
-traniter = 639
-tranpoints = 152
-accept = 118
-rejected = 34
-matrix size = 5
-fillins = 5
-solver = Normal
-Matrix Compiler1: 398 bytes object code size  0.2/0.1/[0.1]
-Matrix Compiler2: off  [0.1]/0.1/0.1
-

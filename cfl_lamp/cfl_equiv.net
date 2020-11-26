@@ -1,20 +1,11 @@
 * C:\Users\user\Desktop\python_spice\cfl_lamp\cfl_equiv.asc 
-<<<<<<< HEAD
-R1 N001 0 1884.875536736095 
-=======
-R1 N001 0 None 
->>>>>>> 877cf33fd218bf9aebf66dea680329ed11a3bdc1
+R1 N001 0 1714.5433537006675 
 D1 N003 N001 D 
 D2 N004 N001 D 
 D3 0 N003 D 
 D4 0 N004 D 
-<<<<<<< HEAD
-C1 N001 0 1.011305268940261e-05 
-R2 N002 N003 34.97863584344243 
-=======
-C1 N001 0 None 
-R2 N002 N003 None 
->>>>>>> 877cf33fd218bf9aebf66dea680329ed11a3bdc1
+C1 N001 0 1.1310115149864331e-05 
+R2 N002 N003 29.779137810171147 
 V1 N002 N004 SINE(0 170.83060321432882 60 0 0 -240.84000000000003) 
 .model D D 
 .lib C:\Users\user\Documents\LTspiceXVII\lib\cmp\standard.dio 

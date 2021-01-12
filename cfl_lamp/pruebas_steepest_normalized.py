@@ -24,16 +24,20 @@ def steeped_descent(seed,objective,alpha,epsilon):
     x_list=[]
     x_fitness=[]
     k=0
-    for i in range(200):
+    for i in range(100):
         fitness=metrics(x)[objective]
         x_list.append(x)
         x_fitness.append(fitness)
         gradient_cal=numerical_gradient(x,fitness, objective)
         x=x-alpha*gradient_cal
         if(len(x_fitness)>5):
-            tol=np.average(x_fitness[-3:-1])-x_fitness[-1]
-            if(np.abs(tol)<=epsilon):
+            reference=np.average(x_fitness[-3:-1])
+            tol=np.abs(reference-x_fitness[-1])
+            if(tol<=epsilon):
                 alpha=alpha*0.1
+                
+            if(min(x_fitness[-3:-1]<x_fitness[-1])):
+            
                 k=k+1
                 if(k==10):
                     break
@@ -150,3 +154,7 @@ axis4.set_xlabel('$iteración$ [i]')
 from plot_file import plotting 
 
 plotting(x_list2[-1]*[1000,1,1e-6])
+#%% load results
+import numpy as np
+fitnes=np.load('alpha_variable_ftness2020-Nov-26-12_01.npy')
+params=np.load('alpha_variable_params2020-Nov-26-12_01.npy')

@@ -35,7 +35,7 @@ with open("simulation_vars.pickle", "wb") as f:
 #%%----------------------------GA------------------------------
 popu_size=60
 xover_rate=0.98
-mut_rate=0.01
+mut_rate=0.03
 bit_n=16
 limit=0
 epsilon=1e-0

@@ -42,7 +42,7 @@ ax1.set_xlabel(r'Tiempo(s)', labelpad=10)
 ax1.set_xlim(0, measure.t[-1])
 ax1.set_ylim(min(measure.i)-0.1, max(measure.i)+0.1)
 # ax1.set_xlabel('Iteracion(i)')
-
+ax1.set_ylabel(r'Tiempos(s)', labelpad=10)
 ax1.set_ylabel(r'Corriente(A)', labelpad=10)
 # ax1.spines['right'].set_visible(False)
 # ax1.spines['top'].set_visible(False)
@@ -65,6 +65,7 @@ ax2.plot(measure.t, measure.v, linewidth=3,color=colors(0),
 ax2.set_xlim(0, measure.t[-1])
 ax2.set_ylim(min(measure.v)-10, max(measure.v)+10)
 ax2.set_ylabel(r'Tension(V)', labelpad=10)
+ax2.set_xlabel(r'Tiempo(s)', labelpad=10)
 
 ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
 ax2.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
@@ -123,30 +124,58 @@ ax1.set_title('Pasos de integracion')
 ax1.set_xlim(0, len(dt))
 ax1.set_ylim(0, 2000)
 ax1.set_ylabel('dt(us)')
+ax1.set_xlabel('n(muestra)')
 # ax1.spines['right'].set_visible(False)
 # ax1.spines['top'].set_visible(False)
 ax1.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
 ax1.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
 ax1.yaxis.set_tick_params(which='major', size=10, width=2, direction='in')
 ax1.yaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
-ax1.grid(True)
+
 ax1.legend(bbox_to_anchor=(0.78, 0.9), loc=10, frameon=True, fontsize=14)
 
 ax2.plot(dt2*1e6,linewidth=2, color=colors(1), label='medida dt')
 
 
 ax2.set_xlim(0, len(dt))
-ax2.set_ylim(0, 20)
-ax2.set_ylabel('dt(us)')
+
 # ax1.spines['right'].set_visible(False)
 # ax1.spines['top'].set_visible(False)
 ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
 ax2.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
 ax2.yaxis.set_tick_params(which='major', size=10, width=2, direction='in')
 ax2.yaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
-ax2.grid(True)
 ax2.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 
+
+plt.figure()
+f, (ax1, ax2) = plt.subplots(2, 1)
+dt3=[]
+for i in range(1,len(time_sim2)):
+    dt3.append(time_sim2[i]-time_sim2[i-1])
+    
+
+dt3=np.array(dt3)
+
+ax1.plot(time_sim[1:]*1000,dt*1e6,linewidth=2, color=colors(0), label='dt ltspice \n n=106')
+ax1.set_ylim(0, 2000)
+ax1.set_ylabel('dt(us)')
+ax1.set_xlabel('t(ms)')
+ax1.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
+ax1.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
+ax1.yaxis.set_tick_params(which='major', size=10, width=2, direction='in')
+ax1.yaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
+ax1.legend(bbox_to_anchor=(0.78, 0.93), loc=10, frameon=True, fontsize=14)
+
+ax2.plot(time_sim2[1:]*1000,dt3*1e6,linewidth=2, color=colors(1), label='dt medida \n n=4097')
+ax2.set_ylim(0, 20)
+ax2.set_ylabel('dt(us)')
+ax2.set_xlabel('t(ms)')
+ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
+ax2.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
+ax2.yaxis.set_tick_params(which='major', size=10, width=2, direction='in')
+ax2.yaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
+ax2.legend(bbox_to_anchor=(0.78, 0.8), loc=10, frameon=True, fontsize=14)
 #%%
 def plotting(fit_solution):
     dist,measure,simulation_adjust=fitnessCfl(fit_solution , models="true")

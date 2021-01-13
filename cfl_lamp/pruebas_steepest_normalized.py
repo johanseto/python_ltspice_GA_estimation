@@ -79,7 +79,14 @@ seed=np.array([[500,5,1e-6]])
 
 epsilon=0.02
 objective='norma2Diff'
+#%%Singles metrics
+#$Rd=R1=1766.487\Omega$  , $R=R2=13.9573\Omega$ y $C=C1=12.5418uF$
+value=np.array([[1.766487,13.9573,12.5418]])
 
+#d=R1 = 1713.761Ω,R=R2 =29.6843ΩyC=C1 = 11.2601uF
+#value=np.array([[1.713761,29.6843,11.260]])
+metric_objective='mse'
+fitness1=metrics(value)
 #%% alpha univalue
 #r1*1000,r2*1,c1*1e^-6
 seed=np.array([[1.3,12,20]])
@@ -148,5 +155,5 @@ axis4.set_xlabel('$iteración$ [i]')
     
 #%% 
 from plot_file import plotting 
-
-plotting(x_list2[-1]*[1000,1,1e-6])
+value=np.array([[1.713761,29.6843,11.260]])
+plotting(value*[1000,1,1e-6])

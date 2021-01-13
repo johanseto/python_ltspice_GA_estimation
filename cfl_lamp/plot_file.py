@@ -41,7 +41,7 @@ def plotting(fit_solution):
     ax1.set_xlim(0, measure.t[-1])
     ax1.set_ylim(min(measure.i)-0.1, max(measure.i)+0.1)
     # ax1.set_xlabel('Iteracion(i)')
-    
+    ax1.set_xlabel(r'Tiempo(s)', labelpad=10)
     ax1.set_ylabel(r'Corriente(A)', labelpad=10)
     # ax1.spines['right'].set_visible(False)
     # ax1.spines['top'].set_visible(False)
@@ -65,6 +65,7 @@ def plotting(fit_solution):
     ax2.set_xlim(0, measure.t[-1])
     ax2.set_ylim(min(measure.v)-10, max(measure.v)+10)
     ax2.set_ylabel(r'Tension(V)', labelpad=10)
+    ax2.set_xlabel(r'Tiempo(s)', labelpad=10)
     ax2.xaxis.set_tick_params(which='major', size=10, width=2, direction='in')
     ax2.xaxis.set_tick_params(which='minor', size=7, width=2, direction='in')
     ax2.yaxis.set_tick_params(which='major', size=10, width=2, direction='in')

@@ -23,50 +23,56 @@ axis4=axis[1,1]
 axis5=axis[2,0]
 axis6=axis[2,1]
 
-
+nlabel_axis=25
+nlabel_signal=25
+ntick=7
 axis1.plot(np.abs(upper[:,0]))
-axis1.set_ylabel('RMSE')
-axis1.set_xlabel('$iteración$ [i]')
+axis1.set_ylabel('Fitness',fontsize=nlabel_axis)
+axis1.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
+
 
 axis2.plot(upper[:,4])
 #axis5.title('Funcion fitness')
-axis2.set_ylabel('$n$[Emission]')
-axis2.set_xlabel('$iteración$ [i]')
+axis2.set_ylabel('$n$[Emission]',fontsize=nlabel_axis)
+axis2.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 
 
 axis3.plot(upper[:,2])
 #axis3.title('Funcion fitness')
-axis3.set_ylabel('$R_{s}$ [$\Omega$]')
-axis3.set_xlabel('$iteración$ [i]')
+axis3.set_ylabel('$R_{s}$ [$\Omega$]',fontsize=nlabel_axis)
+axis3.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis4.plot(upper[:,3]*1e9)
 #axis4.title('Funcion fitness')
-axis4.set_ylabel('$I_s$ [$nA$]')
-axis4.set_xlabel('$iteración$ [i]')
+axis4.set_ylabel('$I_s$ [$nA$]',fontsize=nlabel_axis)
+axis4.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis5.plot(upper[:,1])
 #axis2.title('Funcion fitness')
-axis5.set_ylabel('$R_{sh}$ [$\Omega$]')
-axis5.set_xlabel('$iteración$ [i]')
+axis5.set_ylabel('$R_{sh}$ [$\Omega$]',fontsize=nlabel_axis)
+axis5.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis6.plot(upper[:,5])
 #axis6.title('Funcion fitness')
-axis6.set_ylabel('$I_\lambda$ [$A$]')
-axis6.set_xlabel('$iteración$ [i]')
+axis6.set_ylabel('$I_\lambda$ [$A$]',fontsize=nlabel_axis)
+axis6.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 #%%
 voltage_current_file='leibold_solar_module_4-100.csv'
 
+ntick=15
 
 measure,simulation_vars=ModelPv.signals_caracteristics(voltage_current_file)
 plt.figure()
-plt.plot(measure.v,measure.i,linewidth=2,marker='o')
-plt.title('Curva V-I de medidas modulo Leibold solar(STE 4/100)',fontsize=15)
-plt.xlabel('Tension[V]')
-plt.ylabel('Corriente[A]')
+plt.plot(measure.v,measure.i,linewidth=2,marker='o',markersize=12)
+plt.title('Curva V-I de medidas modulo Leibold solar(STE 4/100)',fontsize=25)
+plt.xlabel('Tension[V]',fontsize=nlabel_axis)
+plt.ylabel('Corriente[A]',fontsize=nlabel_axis)
 plt.xlim(measure.v.min(),measure.v.max()+0.1)
 plt.ylim(measure.i.min(),measure.i.max()+0.001)
+plt.xticks(fontsize=ntick)
+plt.yticks(fontsize=ntick)
 
 #%%
 from pylab import cm
@@ -87,16 +93,20 @@ colors = cm.get_cmap('tab10', 10)
 
 #%%
 
+ntick=15
+
 plt.figure()
-plt.plot(measure.v, measure.i, color=colors(0), label='Medidas',marker='o')
-plt.plot(simulation_article.v, simulation_article.i, color=colors(3), 
-         label=' Simulada Estado del arte ',marker='x',lineStyle=':')
-plt.plot(simulation_adjust.v, simulation_adjust.i, color=colors(6), 
-         label=' Simulada Metodología',marker='*',lineStyle=':',alpha=0.8)
+plt.plot(measure.v, measure.i, color=colors(0), label='Medidas',marker='o',linewidth=2,markersize=15)
+plt.plot(simulation_article.v, simulation_article.i, color=colors(1), 
+         label=' Simulada Estado del arte ',marker='x',lineStyle=':',linewidth=2,markersize=15)
+plt.plot(simulation_adjust.v, simulation_adjust.i, color=colors(3), 
+         label=' Simulada Metodología propuesta ',marker='*',lineStyle=':',alpha=0.8,linewidth=2,markersize=15)
 
-plt.title('Resultados')
+plt.title('Resultados',fontsize=nlabel_axis)
    
-plt.xlabel('Tension[V]')
+plt.xlabel('Tension[V]',fontsize=nlabel_axis)
 
-plt.ylabel(r'Corriente[A]', labelpad=10)
-plt.legend()
+plt.ylabel(r'Corriente[A]',fontsize=nlabel_axis)
+plt.legend(fontsize=nlabel_signal)
+plt.xticks(fontsize=ntick)
+plt.yticks(fontsize=ntick)

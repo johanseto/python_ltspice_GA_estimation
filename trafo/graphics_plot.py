@@ -31,37 +31,38 @@ axis4=axis[1,1]
 axis5=axis[2,0]
 axis6=axis[2,1]
 
+nlabel_axis=25
 
 axis1.plot(np.abs(upper[:,0]))
-axis1.set_ylabel('RMSE')
-axis1.set_xlabel('$iteración$ [i]')
+axis1.set_ylabel('Fitness',fontsize=nlabel_axis)
+axis1.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis2.plot(upper[:,3])
 #axis5.title('Funcion fitness')
-axis2.set_ylabel('$L$ [H]')
-axis2.set_xlabel('$iteración$ [i]')
+axis2.set_ylabel('$L$ [H]',fontsize=nlabel_axis)
+axis2.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 
 
 axis3.plot(upper[:,1])
 #axis3.title('Funcion fitness')
-axis3.set_ylabel('$R$ [$\Omega$]')
-axis3.set_xlabel('$iteración$ [i]')
+axis3.set_ylabel('$R$ [$\Omega$]',fontsize=nlabel_axis)
+axis3.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis4.plot(upper[:,4])
 #axis4.title('Funcion fitness')
-axis4.set_ylabel('$L_{m}$ [H]')
-axis4.set_xlabel('$iteración$ [i]')
+axis4.set_ylabel('$L_{m}$ [H]',fontsize=nlabel_axis)
+axis4.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis5.plot(upper[:,2])
 #axis2.title('Funcion fitness')
-axis5.set_ylabel('$R_{c}$ [$\Omega$]')
-axis5.set_xlabel('$iteración$ [i]')
+axis5.set_ylabel('$R_{c}$ [$\Omega$]',fontsize=nlabel_axis)
+axis5.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis6.plot(np.sqrt(upper[:,4]/upper[:,5]))
 #axis6.title('Funcion fitness')
-axis6.set_ylabel('$N$ ')
-axis6.set_xlabel('$iteración$ [i]')
+axis6.set_ylabel('$N$ ',fontsize=nlabel_axis)
+axis6.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 # axis6.plot(np.sqrt(upper[:,4]/upper[:,5]))
 # #axis6.title('Funcion fitness')
@@ -114,34 +115,34 @@ axis2=axis[0,1]
 axis3=axis[1,0]
 axis4=axis[1,1]
 
+nlabel_axis=25
+nlabel_signal=25
 
-
-
-axis1.set_ylabel('Tension[V]')
-axis1.set_xlabel('Tiempos[s]')
+axis1.set_ylabel('Tension[V]',fontsize=nlabel_axis)
+axis1.set_xlabel('Tiempos[s]',fontsize=nlabel_axis)
 axis1.set_title('V1')
 axis1.plot(measure.t, measure.v1 ,color=colors(2), label='Medidas propuesta',alpha=0.8,linewidth=2)
 axis1.plot(simulation_adjust.t, simulation_adjust.v1,color='black',linestyle='--',label='Simulacion metodologia') 
-axis1.legend(bbox_to_anchor=(1.2, 1.2), loc=10, frameon=True, fontsize=14)
+axis1.legend(bbox_to_anchor=(1.2, 1.2), loc=10, frameon=True, fontsize=nlabel_signal)
 
 axis2.set_title('V2')
-axis2.set_ylabel('Tension[V]')
-axis2.set_xlabel('Tiempo[s]')
+axis2.set_ylabel('Tension[V]',fontsize=nlabel_axis)
+axis2.set_xlabel('Tiempo[s]',fontsize=nlabel_axis)
 axis2.plot(measure.t, measure.v2 ,color=colors(2), label='Medidas',alpha=0.8,linewidth=2)
 axis2.plot(simulation_adjust.t, simulation_adjust.v2,color='black',linestyle='--',label='Simulacion metodologia') 
 
 
 
 axis3.set_title('i1')
-axis3.set_ylabel('Corriente[A]')
-axis3.set_xlabel('Tiempo[s]')
+axis3.set_ylabel('Corriente[A]',fontsize=nlabel_axis)
+axis3.set_xlabel('Tiempo[s]',fontsize=nlabel_axis)
 axis3.plot(measure.t, measure.i1 ,color=colors(2), label='Medidas',alpha=0.8,linewidth=2)
 axis3.plot(simulation_adjust.t, simulation_adjust.i1,color='black',linestyle='--',label='Simulacion metodologia') 
 
 
 axis4.set_title('i2')
-axis4.set_ylabel('Corriente[A]')
-axis4.set_xlabel('Tiempo[s]')
+axis4.set_ylabel('Corriente[A]',fontsize=nlabel_axis)
+axis4.set_xlabel('Tiempo[s]',fontsize=nlabel_axis)
 axis4.plot(measure.t, measure.i2 ,color=colors(2), label='Medidas',alpha=0.8,linewidth=2)
 axis4.plot(simulation_adjust.t, simulation_adjust.i2,color='black',linestyle='--',label='Simulacion metodologia')  
 

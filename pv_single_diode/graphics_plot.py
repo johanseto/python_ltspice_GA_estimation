@@ -55,7 +55,7 @@ axis5.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 axis6.plot(upper[:,5])
 #axis6.title('Funcion fitness')
-axis6.set_ylabel('$I_\lambda$ [$A$]',fontsize=nlabel_axis)
+axis6.set_ylabel('$I_{ph}$ [$A$]',fontsize=nlabel_axis)
 axis6.set_xlabel('$iteración$ [i]',fontsize=nlabel_axis)
 
 #%%

@@ -1,0 +1,1 @@
+start "C:\Program Files\LTC\LTspiceXVII\ltspice.exe -b" .\trafo_single.net

@@ -1,0 +1,14 @@
+* C:\Users\user\Desktop\python_spice\_trafo\trafo_single.asc 
+R1 N001 N002 
+L1 N002 N003 
+V1 N001 0 SINE(0 3394.11 60) 
+R2 N003 0 
+R3 N005 0 100 
+L2 N003 0 
+L3 N004 0 
+L4 N004 N005 0.2m 
+.tran 50ms 
+K L2 L3 1 
+.options maxstep=1e-6 
+.backanno 
+.end 

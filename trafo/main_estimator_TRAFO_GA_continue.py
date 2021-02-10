@@ -99,6 +99,6 @@ today_str='{:%Y-%b-%d-%H_%M}'.format(today)
 np.save('upper_'+today_str+'.npy',upper)
 np.save('popu_'+today_str+'.npy',popu)
 #%% plotting
-plotting(upper)
-upper2=np.array([[0,1,1000,0.01,1,0.01]])
+#plotting(upper)
+upper2=np.array([[4000,1,1000,0.01,1,0.01]])
 dist=plotting(upper2)

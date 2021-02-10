@@ -6,7 +6,7 @@ Created on Mon Feb 10 19:59:12 2020
 """
 import numpy as np
 from fitness_functions import fitnessSnubber,fitnessCfl,fitnessTrafo
-
+from fitness_general import fitnessGeneral
 def evalPopu(popu,bit_n,rango,obj_fcn):
     global count
     pop_n=popu.shape[0]  #Numero de individuos

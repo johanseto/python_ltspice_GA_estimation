@@ -66,6 +66,8 @@ Esta clase es la que configura el escenario y las caracteristicas para realizar 
 $$vector_{RMSE}=[]$$
 $$ fitness_{RMSE}=||vector_{RMSE}||$$
 
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
 ![formula](https://render.githubusercontent.com/render/math?math=A%20-%20B%20=%20\
 ```python
 #%%Pre process class to configure the case

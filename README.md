@@ -66,7 +66,9 @@ Esta clase es la que configura el escenario y las caracteristicas para realizar 
 $$vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]$$
 $$ fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}$$
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
 
 ```python

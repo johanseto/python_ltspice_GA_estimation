@@ -84,7 +84,7 @@ Se declara la función objetivo o fitness que utilizara el algoritmo genético. 
 
 Si se utiliza mas de una señal para estimar, se construye un vector de RMSE y se calcula norma 2 de este vector como función fitness objetivo:
 
-<img align="center" img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
+<img align="center"  src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
 

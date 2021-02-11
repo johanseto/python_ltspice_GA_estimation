@@ -123,5 +123,5 @@ Todas los requests o peticiones de colaboración son bienvenidas. Para mayor cam
 Este repositorio fue desarrollado por Johan Castiblanco, ingeniero electrónico. Se reconoce al grupo de investigación GICEP de la Universidad Nacional de Colombia sede Manizales, por su formación y acompañamiento en temáticas relacionadas con electrónica de potencia y modelado y simulación. 
 Se agradece también por la  colaboración a los doctores Andres Felipe Guerrero y Armando Ustariz en el proceso.
 
-## License
+## Licencia
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -78,8 +78,11 @@ simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2,norm=True)
 ### 3) Método de algoritmo genético(G.A) 
 En esta sección se define las características para trabajar o dar convergencia de la estimación según el algoritmo genético.
 Se declara la función objetivo o fitness que utilizara el algoritmo genético. Para ello se utiliza la función fitness general basada la definición RMSE de cada señal entre medidas y simulación. 
+
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{Y}_i-Y_i)^2}"  />
+
 Si se utiliza mas de una señal para estimar, se construye un vector de RMSE y se calcula norma 2 de este vector como función fitness objetivo:
+
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />

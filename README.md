@@ -62,7 +62,7 @@ signals2=['I(R1)','V(n004)','I(L4)']
 
 
 ## Contribución
-Todas los requests o peticiones de colaboración son bienvenidas. Para mayor cambios, por favor abrir una discusión para tratar el tema o item posible a cambiar.
+Todas los requests o peticiones de colaboración son bienvenidas. Para mayor cambios, por favor abrir una discusión para tratar el tema o item posible a modificar.
 
 ## Autores y reconocimiento
 Este repositorio fue desarrollado por Johan Castiblanco, ingeniero electrónico. Se reconoce al grupo de investigación GICEP de la Universidad Nacional de Colombia sede Manizales, por su formación y acompañamiento en temáticas relacionadas con electrónica de potencia y modelado y simulación. 

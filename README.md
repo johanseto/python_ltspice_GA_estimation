@@ -86,13 +86,13 @@ Si se utiliza mas de una señal para estimar, se construye un vector de RMSE y s
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
 
-<align="center",img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
 
 Por ultimo se define los operadores genéticos y parámetros de un algoritmo genético. Es el caso del tamaño de la población, tase de cruce, tase de mutación, bits de definición , criterio de parada en iteraciones. También se incluye la información relacionada con los parámetros y su búsqueda, es el caso de indicar el número de parámetros y el rango de las variables para realizar el proceso de estimación.
 
 
 
-![\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}](https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}) 
+
 
 
 

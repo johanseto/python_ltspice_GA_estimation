@@ -13,14 +13,16 @@ import pandas
 import pickle
 ##Principal class
 class Model:
-    def __init__(self,time,signals):
+    def __init__(self,time,signals,measure=False):
         self.time=time
         self.signals=signals
         base=[]
         for signal in self.signals:
             base.append(max(signal)-min(signal))
         self.base=base
-        
+        if(measure):#modelo base as measure.sabe in disk.
+            with open("measure.pickle", "wb") as f:
+                pickle.dump(self, f)
     def read_csv_signal(signals_file,n_signals):
         voltage_current_df = pandas.read_csv(signals_file,header=None)
         time=np.array(voltage_current_df.iloc[0:,0])

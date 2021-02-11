@@ -12,16 +12,15 @@ from functions_GA import evalPopu,upperData,nextPopu,geneticAlgoritm
 from plot_file import plotting
 import datetime
 
-#%%Measure data recolection
+#%%Measure data recolection model class
 
 signals_file='values_noise.csv'
 n=4
 
 signal_name=['v1','i1','v2','i2']
 measure=Model.read_csv_signal(signals_file,4)
-measure2=Model(measure.time,measure.signals[1:])
-with open("measure.pickle", "wb") as f:
-    pickle.dump(measure2, f)
+measure_model=Model(measure.time,measure.signals[1:],measure=True)
+
 
 #%%Pre process class to configure the case
 

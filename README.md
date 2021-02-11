@@ -1,6 +1,7 @@
 # python-ltspice-GA-estimation
 Repositorio de trabajo de herramienta de estimación de dispositivos eléctricos basada en GA.
- La metodología interconecta técnicas de estimación en un lenguaje de programación(Python) con un programa de simulación (LTspice).La  estimación se basa en simulaciones iterativas que se comparan con una entrada o medidas hasta hallar los parámetros de salida, como se muestra en la 
+
+ La metodología interconecta técnicas de estimación en un lenguaje de programación(Python) con un programa de simulación (LTspice).La  estimación se basa en simulaciones iterativas que se comparan con una entrada o medidas hasta hallar los parámetros de salida, como se muestra en ek gisguiente diagrama.
 ![diagrama funcionamiento ](herramienta_manual_resumen.png)
 
 ## Funcionamiento
@@ -42,9 +43,22 @@ pip install ltspice
 ## Uso
 
 Para la utilización de este repositorio se debe tener instalados los pasos previos del ítem anterior.
-El proceso se bas se guna l igura
-![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
 
+El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
+![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
+###1) Modelo de señales adquiridas.
+```python
+#%%Measure data recolection-model class
+
+signals_file='values_noise.csv'
+n=4
+
+signal_name=['v1','i1','v2','i2']
+measure=Model.read_csv_signal(signals_file,4)
+measure2=Model(measure.time,measure.signals[1:])
+with open("measure.pickle", "wb") as f:
+    pickle.dump(measure2, f)
+```
 La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
 Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 
 

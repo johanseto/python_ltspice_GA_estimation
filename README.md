@@ -47,18 +47,16 @@ Para la utilización de este repositorio se debe tener instalados los pasos prev
 El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
 ![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
 ### 1) Modelo de señales adquiridas.
-En esta seccion se crea el modelo de medidas a partir de la clase Model. Esta clase permite leer seniales de aquisicion guardas en formato .csv.  De esa forma, se entregan como argumetno de entrada el nombre del archivo con las seniales y 
+En esta sección se crea el modelo de medidas a partir de la clase Model. Esta clase permite leer señales de adquisición guardas en formato *.csv.*  De esa forma, se entregan como argumento de entrada el nombre del archivo para adquirir las dos instancias principales del modelo: tiempo y lista de señales . Por otra parte, la clase tiene el parametro bandera opcional  *measure=True*, que en True indica para ser tomado por referencia y guardarse por el proceso.
 ```python
-#%%Measure data recolection-model class
+#%%Measure data recolection model class
 
 signals_file='values_noise.csv'
 n=4
 
 signal_name=['v1','i1','v2','i2']
 measure=Model.read_csv_signal(signals_file,4)
-measure2=Model(measure.time,measure.signals[1:])
-with open("measure.pickle", "wb") as f:
-    pickle.dump(measure2, f)
+measure_model=Model(measure.time,measure.signals[1:],measure=True)
 ```
 La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
 Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 

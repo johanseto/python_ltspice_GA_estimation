@@ -1,6 +1,6 @@
 # python-ltspice-GA-estimation
-
-Working repository of estimation tool for electrical devices based on GA
+![diagrama funcionamiento ](herramienta_manual_resumen.png)
+Working repository of estimation tool for electrical devices based on GA.
 
 ## Conocimientos previos recomendados
 

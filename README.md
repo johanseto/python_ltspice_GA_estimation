@@ -43,7 +43,7 @@ pip install ltspice
 
 Para la utilización de este repositorio se debe tener instalados los pasos previos del ítem anterior.
 El proceso se bas se guna l igura
-![diagrama funcionamiento ](esquema_manual_herramienta.png)
+![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
 
 La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
 Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 

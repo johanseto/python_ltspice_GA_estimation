@@ -3,6 +3,15 @@ Repositorio de trabajo de herramienta de estimación de dispositivos eléctricos
  La metodología interconecta técnicas de estimación en un lenguaje de programación(Python) con un programa de simulación (LTspice).La  estimación se basa en simulaciones iterativas que se comparan con una entrada o medidas hasta hallar los parámetros de salida, como se muestra en la 
 ![diagrama funcionamiento ](herramienta_manual_resumen.png)
 
+## Funcionamiento
+
+El flujo del trabajo inicia con la selección del dispositivo de su modelo eléctrico o de topología. En ese sentido su topología se dispone por medio de un modelado basado en Netlist en LTspice. De esa manera se carga el Netlist por medio de “strings” para manipular los parámetros a estimar y configurar el centro de control y procesamiento de Python con los respectivos parámetros objetivos.
+
+Luego desde Python se inicia una rutina de estimación basado de G.A se crea una población de individuos basados en los parámetros objetivo. Así se da inicio al proceso iterativo basado en la técnica para estimar.
+
+ En el proceso cada individuo se somete a una evaluación en el software de simulación. Desde Python se da la instrucción de script de consola donde por medio de comandos de consola se envía cada individuo a LTspice, se simula y se devuelve al centro de control la información de las señales eléctricas simuladas a Python. De ese modo se extraen las señales de simulación para manipularlas y compararlas con las señales medidas con una métrica de semejanza.
+Cada individuo de parámetros tiene una evaluación en la que se mide si su simulación tiene semejanza a los datos medidos y así se emplea la técnica evolucionaria de inteligencia artificial sucesivamente hasta extraer el individuo que prevea el mejor parentesco con las señales medidas.
+ Por último, luego de que el algoritmo de control haya encontrado la mejor solución en el proceso del algoritmo genético, se consolida el proceso y se puede dar como salida, los parámetros estimados con mejor ajuste de las medidas físicas del dispositivo eléctrico.
 
 ## Conocimientos previos recomendados
 

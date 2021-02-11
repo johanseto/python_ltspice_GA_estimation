@@ -146,4 +146,4 @@ def geneticAlgoritm(fitness_fcn,var_n,rango,popu_size,xover_rate,mut_rate,
         popu=nextPopu(popu,popu_eval,xover_rate,mut_rate)
         
         
-        return popu,upper
+    return popu,upper

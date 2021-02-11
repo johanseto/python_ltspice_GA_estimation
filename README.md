@@ -47,7 +47,7 @@ Para la utilización de este repositorio se debe tener instalados los pasos prev
 El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
 ![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
 ### 1) Modelo de señales adquiridas.
-En esta sección se crea el modelo de medidas a partir de la clase Model. Esta clase permite leer señales de adquisición guardas en formato *.csv.*  De esa forma, se entregan como argumento de entrada el nombre del archivo para adquirir las dos instancias principales del modelo: tiempo y lista de señales . Por otra parte, la clase tiene el parametro bandera opcional  *measure=True*, que en True indica para ser tomado por referencia y guardarse por el proceso.
+En esta sección se crea el modelo de medidas a partir de la clase Model. Esta clase permite leer señales de adquisición guardas en formato *.csv.*  De esa forma, se entregan como argumento de entrada el nombre del archivo para adquirir las dos instancias principales del modelo: tiempo y lista de señales . Por otra parte, la clase tiene el parámetro bandera opcional  *measure=True*, que en True indica para ser tomado por referencia y guardarse por el proceso.
 ```python
 #%%Measure data recolection model class
 
@@ -62,18 +62,7 @@ La herramienta se basa en estimar los parámetros de un disipativos eléctricos 
 Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 
 
 ### 2) Clase de preprocesamiento  para simulación
-Esta clase es la que configura el escenario y las caracteristicas para realizar los flujo iterativos. Para ello se ingresan el mapa del circuito en LTspice como el netlist, y el archivo de graficas con extension .raw. Se incluyen un vector que indica los parametros obejtico en string con el mino nombre que poseen en el netlist. Por ultimo se ingresa las seniales en el formato visto segun LTspice. Es el caso de corrietnes y tension usando corriente de elemento 'I(R1)'y definiocn de tension de nodo 'V(n004)'. Estas seniales se analizan por el usario y que correspondan con las seniales adquiridas para contrastar una por una. Por ultimo la clase tmabien permit normalizar el caculo de la funcion fitness basadas en la escalda de laximo de cada senial para ser analizadas por la fucnion fitness general conocida como:
-$$vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]$$
-$$ fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}$$
-RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{Y}_i-Y_i)^2}
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{Y}_i-Y_i)^2}"  />
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
-
-
+Esta clase es la que configura el escenario de simulación y las características para realizar los flujos iterativos. Para ello se ingresan el mapa del circuito en LTspice como el netlist y el archivo de graficas con extensión *.raw.* Se incluyen un vector que indica los parámetros objetivo en string con el nombre correspondiente que poseen en el netlist. Por último , se ingresa las señales en el formato visto según LTspice. Es el caso de corrientes y tensión usando corriente de elemento *'I(R1)'* y definición de tensión de nodo *'V(n004)'*. Estas señales se analizan por el usuario para que correspondan con las señales adquiridas para contrastar una por una por la métrica fitness.
 ```python
 #%%Pre process class to configure the case
 
@@ -87,6 +76,23 @@ simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2,norm=True)
 ```
 
 ### 3) Método de algoritmo genético(G.A) 
+En esta sección se define las características para trabajar o dar convergencia de la estimación según el algoritmo genético.
+Se declara la función objetivo o fitness que utilizara el algoritmo genético. Para ello se utiliza la función fitness general basada la definición RMSE de cada señal entre medidas y simulación. 
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{Y}_i-Y_i)^2}"  />
+Si se utiliza mas de una señal para estimar, se construye un vector de RMSE y se calcula norma 2 de este vector como función fitness objetivo:
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
+
+Por ultimo se define los operadores genéticos y parámetros de un algoritmo genético. Es el caso del tamaño de la población, tase de cruce, tase de mutación, bits de definición , criterio de parada en iteraciones. También se incluye la información relacionada con los parámetros y su búsqueda, es el caso de indicar el número de parámetros y el rango de las variables para realizar el proceso de estimación.
+
+
+
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]"  />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}"  />
+
+
 ```python
 #%%----------------------------GA------------------------------
 popu_size=100

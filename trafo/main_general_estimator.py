@@ -6,10 +6,8 @@ Created on Mon Feb  8 17:32:07 2021
 """
 
 import numpy as np
-import pickle
 from estimator_classes_general import Model,SimulationInfo
-from functions_GA import evalPopu,upperData,nextPopu,geneticAlgoritm
-from plot_file import plotting
+from functions_GA import geneticAlgoritm
 import datetime
 
 #%%Measure data recolection model class
@@ -36,7 +34,7 @@ simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2,norm=True)
 #%%----------------------------GA------------------------------
 popu_size=100
 xover_rate=0.98
-mut_rate=0.4
+mut_rate=0.02
 bit_n=10
 stop_criteria=20
 
@@ -59,10 +57,6 @@ today=datetime.datetime.today()
 today_str='{:%Y-%b-%d-%H_%M}'.format(today)
 np.save('upper_'+today_str+'.npy',upper)
 np.save('popu_'+today_str+'.npy',popu)
-#%% plotting
-plotting(upper)
-upper2=np.array([[0,1,1000,0.01,1,0.01]])
-dist=plotting(upper2)
 
 
 #%%continue genetic process

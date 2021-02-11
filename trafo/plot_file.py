@@ -7,14 +7,14 @@ Created on Mon Oct 19 07:25:26 2020
 from pylab import cm
 import matplotlib as mpl
 import matplotlib.font_manager as fm
-from fitness_functions import fitnessTrafo
+from fitness_general import fitnessGeneral
 import numpy as np
 import matplotlib.pyplot as plt
 #%% plotting
 #fit_solution=np.array([upper[-1,:]])
 def plotting(upper):
     fit_solution=np.array([upper[-1,1:]])
-    dist,measure,simulation_adjust=fitnessTrafo(fit_solution , models="true")
+    dist,measure,simulation_adjust=fitnessGeneral(fit_solution , models="true")
 
     
     colors = cm.get_cmap('tab10', 10)

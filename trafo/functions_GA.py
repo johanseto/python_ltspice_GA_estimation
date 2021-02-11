@@ -113,3 +113,37 @@ def nextPopu(popu,popu_eval,xover_rate,mut_rate):
     
     
     
+def geneticAlgoritm(fitness_fcn,var_n,rango,popu_size,xover_rate,mut_rate,
+                    bit_n,stop_criteria,
+                    **options):
+    popu=options.get("popu")#you can use custom popu in arguments.
+    if isinstance(popu, (np.ndarray)):
+        popu=popu
+    else:
+        popu=np.random.rand(popu_size,bit_n*var_n) >0.5 #popu means population
+        popu=popu*1 #pass from bolean to int
+
+        
+        
+    upper=np.array([]) #Matriz para mejores individuos
+    limit=0
+    i=0
+    
+    while limit<=stop_criteria:
+        
+        #popu_fit means popu fit evaluated
+        popu_eval=evalPopu(popu,bit_n,rango,fitness_fcn)  
+        upper=upperData(upper,popu_eval,i,var_n,bit_n,rango,popu)
+        
+        
+        if i>=1:
+            if upper[i,0]==upper[i-1,0]:
+                limit+=1
+            else:
+                limit=0
+              
+        i+=1
+        popu=nextPopu(popu,popu_eval,xover_rate,mut_rate)
+        
+        
+        return popu,upper

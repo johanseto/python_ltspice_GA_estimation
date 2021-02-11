@@ -132,3 +132,4 @@ simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2)
 #simu_data.netlistGen(netlist_path,parameters)
 
 dist2= fitnessGeneral(prueba)
+a,b,c=fitnessGeneral(prueba,models="true")

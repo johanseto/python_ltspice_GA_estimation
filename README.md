@@ -1,6 +1,6 @@
 # python-ltspice-GA-estimation
 
-Foobar is a Python library for dealing with word pluralization.
+Working repository of estimation tool for electrical devices based on GA
 
 ## Conocimientos previos recomendados
 

@@ -46,7 +46,7 @@ Para la utilización de este repositorio se debe tener instalados los pasos prev
 
 El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
 ![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
-###1) Modelo de señales adquiridas.
+### 1) Modelo de señales adquiridas.
 ```python
 #%%Measure data recolection-model class
 
@@ -62,32 +62,41 @@ with open("measure.pickle", "wb") as f:
 La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
 Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 
 
+### 2) Clase de preprocesamiento  para simulación
 ```python
+#%%Pre process class to configure the case
 
-
-import numpy as np
-import pickle
-from estimator_classes_general import Model,SimulationInfo
-from functions_GA import evalPopu,upperData,nextPopu
-from plot_file import plotting
-import datetime
-
-signals2=['I(R1)','V(n004)','I(L4)']
-simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2,norm=True)
-
-signals_file='values_noise.csv'
-n=4
-
-signal_name=['v1','i1','v2','i2']
-measure=Model.read_csv_signal(signals_file,4)
 sim_name='trafo_single'
 sim_raw='/'+sim_name+'.raw'
 netlist_path= r'C:\Users\user\Desktop\python_spice\trafo\trafo_single.net'
 parameters=['R1','R2','L1','L2','L3']
 signals2=['I(R1)','V(n004)','I(L4)']
+
+simu_data=SimulationInfo(netlist_path,sim_raw,parameters,signals2,norm=True)
 ```
 
+### 3) Método de algoritmo genético(G.A) 
+```python
+#%%----------------------------GA------------------------------
+popu_size=100
+xover_rate=0.98
+mut_rate=0.4
+bit_n=10
+stop_criteria=20
 
+fitness_fcn= 'fitnessGeneral'
+var_n=5
+
+rango=np.array([[1e-3,10],
+                [1e-3,2000],
+                [1e-6,2],
+                [1e-6,2],
+                [1e-6,2]])
+
+
+popu,upper=geneticAlgoritm(fitness_fcn, var_n, rango, popu_size, xover_rate,
+                           mut_rate, bit_n, stop_criteria)
+```
 ## Contribución
 Todas los requests o peticiones de colaboración son bienvenidas. Para mayor cambios, por favor abrir una discusión para tratar el tema o item posible a modificar.
 

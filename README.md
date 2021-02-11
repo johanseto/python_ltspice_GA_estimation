@@ -63,12 +63,12 @@ Por tal motivo el codigo principal utiliza como base la formulación de un circu
 
 ### 2) Clase de preprocesamiento  para simulación
 Esta clase es la que configura el escenario y las caracteristicas para realizar los flujo iterativos. Para ello se ingresan el mapa del circuito en LTspice como el netlist, y el archivo de graficas con extension .raw. Se incluyen un vector que indica los parametros obejtico en string con el mino nombre que poseen en el netlist. Por ultimo se ingresa las seniales en el formato visto segun LTspice. Es el caso de corrietnes y tension usando corriente de elemento 'I(R1)'y definiocn de tension de nodo 'V(n004)'. Estas seniales se analizan por el usario y que correspondan con las seniales adquiridas para contrastar una por una. Por ultimo la clase tmabien permit normalizar el caculo de la funcion fitness basadas en la escalda de laximo de cada senial para ser analizadas por la fucnion fitness general conocida como:
-$$vector_{RMSE}=[]$$
-$$ fitness_{RMSE}=||vector_{RMSE}||$$
+$$vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]$$
+$$ fitness_{RMSE}=||vector_{RMSE}||=\sqrt{\sum_{j=1}^{m}RMSE_j^2}$$
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;vector_{RMSE}=[RMSE_1,RMSE_2,RMSE_3,...,RMSE_m]" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
-![formula](https://render.githubusercontent.com/render/math?math=A%20-%20B%20=%20\
+
 ```python
 #%%Pre process class to configure the case
 

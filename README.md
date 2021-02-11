@@ -1,7 +1,7 @@
 # python-ltspice-GA-estimation
 Repositorio de trabajo de herramienta de estimación de dispositivos eléctricos basada en GA.
 
- La metodología interconecta técnicas de estimación en un lenguaje de programación(Python) con un programa de simulación (LTspice).La  estimación se basa en simulaciones iterativas que se comparan con una entrada o medidas hasta hallar los parámetros de salida, como se muestra en ek gisguiente diagrama.
+ La metodología interconecta técnicas de estimación en un lenguaje de programación(Python) con un programa de simulación (LTspice).La  estimación se basa en simulaciones iterativas que se comparan con una entrada o medidas hasta hallar los parámetros de salida, como se muestra en el siguiente diagrama.
 ![diagrama funcionamiento ](herramienta_manual_resumen.png)
 
 ## Funcionamiento

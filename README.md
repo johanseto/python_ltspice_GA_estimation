@@ -37,7 +37,7 @@ Para la utilización del repositorio se recomienda tener formación o conocimien
 pip install ltspice
 ```
 
-5. Descargar respositorio de trabajo [python-ltspice-GA-estimacion](https://github.com/johanv26/python_ltspice_GA_estimation) con código fuente de la herramienta en Github.
+5. Descargar repositorio de trabajo [python-ltspice-GA-estimacion](https://github.com/johanv26/python_ltspice_GA_estimation) con código fuente de la herramienta en Github.
 
 
 ## Uso

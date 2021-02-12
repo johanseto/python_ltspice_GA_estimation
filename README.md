@@ -28,7 +28,7 @@ Para la utilización del repositorio se recomienda tener formación o conocimien
 
 2. Instalar [Python 3.7](https://www.python.org/downloads/) o superior.
 
-3. Se recomienda instalar el paquete e manejo o núcleo [AnaConda](https://docs.anaconda.com/anaconda/install/windows/) que incluye Spyder para mayor facilidad de manejo de datos en optimización y estimación. 
+3. Se recomienda instalar el paquete de manejo o núcleo [AnaConda](https://docs.anaconda.com/anaconda/install/windows/) que incluye Spyder para mayor facilidad de manejo de datos en optimización y estimación. 
 
 4. Use el administrador de paquetes  [pip](https://pip.pypa.io/en/stable/) para instalar la librería [ltspice](https://pypi.org/project/ltspice/).
 
@@ -42,7 +42,9 @@ pip install ltspice
 
 ## Uso
 
-Para la utilización de este repositorio se debe tener instalados los pasos previos del ítem anterior.
+Para la utilización de este repositorio se debe tener instalados los pasos previos del ítem anterior.La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
+Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 
+
 
 El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
 
@@ -60,8 +62,6 @@ signal_name=['v1','i1','v2','i2']
 measure=Model.read_csv_signal(signals_file,4)
 measure_model=Model(measure.time,measure.signals[1:],measure=True)
 ```
-La herramienta se basa en estimar los parámetros de un disipativos eléctricos a partir de un modelo eléctrico de simulación.
-Por tal motivo el codigo principal utiliza como base la formulación de un circuito de simulación en netlist para estimar. 
 
 ### 2) Clase de preprocesamiento  para simulación
 Esta clase es la que configura el escenario de simulación y las características para realizar los flujos iterativos. Para ello se ingresan el mapa del circuito en LTspice como el netlist y el archivo de graficas con extensión *.raw.* Se incluyen un vector que indica los parámetros objetivo en string con el nombre correspondiente que poseen en el netlist. Por último , se ingresa las señales en el formato visto según LTspice. Es el caso de corrientes y tensión usando corriente de elemento *'I(R1)'* y definición de tensión de nodo *'V(n004)'*. Estas señales se analizan por el usuario para que correspondan con las señales adquiridas para contrastar una por una por la métrica fitness.

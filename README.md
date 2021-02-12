@@ -45,7 +45,9 @@ pip install ltspice
 Para la utilización de este repositorio se debe tener instalados los pasos previos del ítem anterior.
 
 El proceso se basa en la ejecución del archivo principal *main_general_estimator.py*. Este script principal se compone de 3 secciones principales: Sección de adquirir señales en modelo de trabajo. Sección de crear ambiente de simulación con la clase de procesamiento. Y por último la sección de estimación por medio del algoritmo genético.
+
 ![diagrama utlizacion codigo principal](esquema_manual_herramienta.png)
+
 ### 1) Modelo de señales adquiridas.
 En esta sección se crea el modelo de medidas a partir de la clase Model. Esta clase permite leer señales de adquisición guardas en formato *.csv.*  De esa forma, se entregan como argumento de entrada el nombre del archivo para adquirir las dos instancias principales del modelo: tiempo y lista de señales . Por otra parte, la clase tiene el parámetro bandera opcional  *measure=True*, que en True indica para ser tomado por referencia y guardarse por el proceso.
 ```python

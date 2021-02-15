@@ -23,21 +23,22 @@ Para la utilización del repositorio se recomienda tener formación o conocimien
 
 ## Instalación
 
+1.	Herramienta compatible con sistemas operativo [Windows 10].(https://www.microsoft.com/es-es/software-download/windows10)
 
-1. Instalar [Ltspice XVII](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html) en Windows 10.
+2. Instalar [Ltspice XVII](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html) en Windows 10.
 
-2. Instalar [Python 3.7](https://www.python.org/downloads/) o superior.
+3. Instalar [Python 3.7](https://www.python.org/downloads/) o superior.
 
-3. Se recomienda instalar el paquete de manejo o núcleo [AnaConda](https://docs.anaconda.com/anaconda/install/windows/) que incluye Spyder para mayor facilidad de manejo de datos en optimización y estimación. 
+4. Se recomienda instalar el paquete de manejo o núcleo [AnaConda](https://docs.anaconda.com/anaconda/install/windows/) que incluye Spyder para mayor facilidad de manejo de datos en optimización y estimación. 
 
-4. Use el administrador de paquetes  [pip](https://pip.pypa.io/en/stable/) para instalar la librería [ltspice](https://pypi.org/project/ltspice/).
+5. Use el administrador de paquetes  [pip](https://pip.pypa.io/en/stable/) para instalar la librería [ltspice](https://pypi.org/project/ltspice/).
 
 ```bash
 
 pip install ltspice
 ```
 
-5. Descargar repositorio de trabajo [python-ltspice-GA-estimacion](https://github.com/johanv26/python_ltspice_GA_estimation) con código fuente de la herramienta en Github.
+6. Descargar repositorio de trabajo [python-ltspice-GA-estimacion](https://github.com/johanv26/python_ltspice_GA_estimation) con código fuente de la herramienta en Github.
 
 
 ## Uso

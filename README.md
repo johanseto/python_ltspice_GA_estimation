@@ -23,7 +23,7 @@ Para la utilización del repositorio se recomienda tener formación o conocimien
 
 ## Instalación
 
-1.	Herramienta compatible con sistemas operativo [Windows 10].(https://www.microsoft.com/es-es/software-download/windows10)
+1.	Herramienta compatible con sistema operativo [Windows 10](https://www.microsoft.com/es-es/software-download/windows10)
 
 2. Instalar [Ltspice XVII](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html) en Windows 10.
 
